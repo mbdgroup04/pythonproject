@@ -1,9 +1,9 @@
-streamlit as st
-numpy as np
-pandas as pd
+streamlit
+numpy
+pandas
 scikit-learn
 datetime
 pickle
 dotenv
-plotly.express as px
-plotly.graph_objects as go
+plotly.express
+plotly.graph_objects
