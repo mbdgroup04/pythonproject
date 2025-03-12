@@ -139,7 +139,7 @@ elif page == "Predictions":
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     predict_comp_name = st.selectbox("Please choose the desired company name:", df3["Company Name"].unique())
     predict_df = df3[df3["Company Name"] == predict_comp_name]
-    comp_tick=predict_df["Ticker"][0]
+    comp_tick=predict_df["Ticker"].unique()
     min_date = datetime.date(2018, 1, 1)
     max_date = datetime.date.today()
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
