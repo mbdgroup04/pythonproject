@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import numpy as np
 import datetime
 from PySimFin import PySimFin
+from model_func import model_func
 
 # Load Data
 df3=pd.read_csv("sharepricesss.csv")
@@ -150,7 +151,18 @@ elif page == "Predictions":
         end_date=st.date_input('Please insert end date',min_value=min_date,max_value=max_date)
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.title("Prediction result:")
-    #input_data=PySimFin(comp_tick,start_date,end_date)
+    
+    input_data=PySimFin()
+    Cl_prices = input_data.get_share_prices(comp_tick,start_date,end_date)
+
+
+    model_obj = model_func()
+    if input_data is list:
+        predictions = model_func.get_predictions(comp_tick, Cl_prices)
+    else:
+        pass
+
+
 
 
 elif page == "Meet the team!":
