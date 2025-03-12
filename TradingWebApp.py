@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import numpy as np
 import datetime
 from PySimFin import PySimFin
+from model_func import model_func
 
 # Load Data
 df3=pd.read_csv("sharepricesss.csv")
@@ -150,7 +151,34 @@ elif page == "Predictions":
         end_date=st.date_input('Please insert end date',min_value=min_date,max_value=max_date)
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.title("Prediction result:")
-    #input_data=PySimFin(comp_tick,start_date,end_date)
+    
+    #getting the closing prices of last 3 trading days
+    input_data=PySimFin()
+    Cl_prices = input_data.get_share_prices(comp_tick,start_date,end_date)
+
+    #getting the predictions from the trained model
+    model_obj = model_func()
+    if input_data is list:
+        prediction = model_func.get_predictions(comp_tick, Cl_prices)
+    else:
+        pass
+
+    #printing the predictions
+    st.markdown(f"The predicted price of {comp_tick} for the next trading day is ${prediction}")
+
+
+    #printing the trading trading strategy
+    upper_threshold = input_data[-1] * 1.10  # +10% of d-1
+    lower_threshold = input_data[-1] * 0.95  # -5% of d-1
+
+    if prediction > upper_threshold:
+        action = "BUY"
+    elif lower_threshold <= prediction <= upper_threshold:
+        action = "HOLD"
+    else:
+        action = "SELL"
+
+    st.markdown(f"We recommend you to {action} the asset")
 
 
 elif page == "Meet the team!":

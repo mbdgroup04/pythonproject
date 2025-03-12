@@ -13,10 +13,12 @@ logging.basicConfig(
 )
 
 class PySimFin:
+  
   def __init__(self):
     self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
     self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
+  
   def get_share_prices(self,ticker:str,start:str,end:str):
     logging.info('Checking the initial and final dates to prevent errors in the web.')
     if start>end or start<'2018-03-05':
@@ -35,7 +37,7 @@ class PySimFin:
           for i in data[0]['data']:
             data_list.append(i['Last Closing Price'])
           last_list=data_list[-3:]
-          return f'The closing prices for the given dates are: {last_list}'#\nThe predicted closing price for the next day is:{next_day_price:.2f}.'
+          return last_list
         else:
           return f'No data available between {start} and {end}.'
       else:
