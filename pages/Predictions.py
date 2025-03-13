@@ -64,6 +64,7 @@ with col2:
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
+latest_data = input_data.iloc[-1][['d-1', 'd-2', 'd-3']].values.reshape(1, -1)
 
 model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
 model_AMZN=pickle.load(open('models/picklemodel_AMZN.pkl','rb'))
@@ -72,15 +73,15 @@ model_MSFT=pickle.load(open('models/picklemodel_MSFT.pkl','rb'))
 model_TSLA=pickle.load(open('models/picklemodel_TSLA.pkl','rb'))
 
 if selected_ticker=='AAPL':
-    prediction=model_AAPL.predict(input_data)
+    prediction=model_AAPL.predict(latest_data)[0]
 elif selected_ticker=='AMZN':
-    prediction=model_AMZN.predict(input_data)
+    prediction=model_AMZN.predict(latest_data)[0]
 elif selected_ticker=='GOOG':
-    prediction=model_GOOG.predict(input_data)
+    prediction=model_GOOG.predict(latest_data)[0]
 elif selected_ticker=='MSFT':
-    prediction=model_MSFT.predict(input_data)
+    prediction=model_MSFT.predict(latest_data)[0]
 elif selected_ticker=='TSLA':
-    prediction=model_TSLA.predict(input_data)
+    prediction=model_TSLA.predict(latest_data)[0]
 else:
     raise InvalidTicker('Please insert a valid ticker.')
 
