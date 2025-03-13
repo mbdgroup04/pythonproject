@@ -72,4 +72,4 @@ def display(companies):  # ✅ Accept 'companies' as an argument
         fig_compare = px.line(compare_df, x="Date", y="Close", color="Ticker", title="Stock Comparison")
         st.plotly_chart(fig_compare, use_container_width=True)
 
-display(pd.read_csv("companies.csv"))
+display(pd.read_csv("data/companies.csv"))
