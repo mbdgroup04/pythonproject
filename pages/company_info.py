@@ -16,7 +16,7 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     # Dropdown to select a company
     selected_ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
     company_info = companies[companies["Ticker"] == selected_ticker]
-    stock_df=df3[df3["ticker"]==selected_ticker]
+    stock_df=df3[df3["Ticker"]==selected_ticker]
 
     # Display company details
     if not company_info.empty:
