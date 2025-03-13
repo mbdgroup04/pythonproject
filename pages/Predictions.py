@@ -53,6 +53,7 @@ if stock_df.empty:
 
 min_date = datetime.date(2018, 1, 1)
 max_date = datetime.date.today()
+
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 col1,col2=st.columns(2)
 with col1:
