@@ -13,5 +13,4 @@ def load_data():
 
 companies = load_data()  # ✅ Ensure 'companies' is defined
 
-st.sidebar.markdown("---")
 st.sidebar.markdown("Developed with ❤️ using Streamlit")

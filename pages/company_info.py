@@ -86,3 +86,5 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     st.markdown("### 🏆 Top Companies by Employee Count")
     top_companies = filtered_companies.nlargest(10, "Number Employees")[["Company Name", "Number Employees"]]
     st.dataframe(top_companies)
+
+display(pd.read_csv("companies.csv"))
