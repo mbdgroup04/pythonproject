@@ -87,4 +87,4 @@ else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>Next's day's price is: {prediction}</p>", unsafe_allow_html=True)
+st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{float(prediction,2)} $</p>", unsafe_allow_html=True)
