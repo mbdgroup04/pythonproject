@@ -64,7 +64,7 @@ with col2:
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
-latest_data = input_data.iloc[-1][['d-1', 'd-2', 'd-3']].values.reshape(1, -1)
+latest_data = input_data.values.reshape(1, -1)
 
 model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
 model_AMZN=pickle.load(open('models/picklemodel_AMZN.pkl','rb'))
