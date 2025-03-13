@@ -1,12 +1,13 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 def display(companies):  # ✅ Accept 'companies' as an argument
     if companies.empty:
         st.error("⚠️ No company data available.")
         return
-
+    df3=pd.read_csv("shareprices.csv")
     # KPIs
     total_companies = companies.shape[0]
     avg_employees = companies["Number Employees"].mean()
@@ -15,6 +16,7 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     # Dropdown to select a company
     selected_ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
     company_info = companies[companies["Ticker"] == selected_ticker]
+    stock_df=df3[df3["ticker"]==selected_ticker]
 
     # Display company details
     if not company_info.empty:
@@ -44,14 +46,14 @@ def display(companies):  # ✅ Accept 'companies' as an argument
         (filtered_companies["Number Employees"] <= selected_size[1])
     ]
 
-    latest_data = company_info.iloc[-1]
+    latest_data = stock_df.iloc[-1]
 
     # Handle Missing 'Change' Column
-    if 'Change' in company_info.columns:
+    if 'Change' in stock_df.columns:
         change_value = f"{latest_data['Change']}%"
     else:
-        if len(company_info) > 1:
-            change_value = f"{((latest_data['Close'] - company_info.iloc[-2]['Close']) / company_info.iloc[-2]['Close'] * 100):.2f}%"
+        if len(stock_df) > 1:
+            change_value = f"{((latest_data['Close'] - stock_df.iloc[-2]['Close']) / stock_df.iloc[-2]['Close'] * 100):.2f}%"
         else:
             change_value = "N/A"
 
@@ -69,11 +71,11 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     st.markdown("### 📊 Candlestick Chart")
     fig_candle = go.Figure(data=[
         go.Candlestick(
-            x=company_info["Date"],
-            open=company_info["Open"],
-            high=company_info["High"],
-            low=company_info["Low"],
-            close=company_info["Close"],
+            x=stock_df["Date"],
+            open=stock_df["Open"],
+            high=stock_df["High"],
+            low=stock_df["Low"],
+            close=stock_df["Close"],
             name=selected_ticker
         )
     ])
@@ -81,10 +83,10 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     st.plotly_chart(fig_candle, use_container_width=True)
 
     st.markdown("### 📊 Compare Stocks")
-    tickers_selected = st.multiselect("Select multiple stocks:", companies["Company Name"].unique(), default=[selected_ticker])
+    tickers_selected = st.multiselect("Select multiple stocks:", df3["Company Name"].unique(), default=[selected_ticker])
     
     if tickers_selected:
-        compare_df = companies[companies["Company Name"].isin(tickers_selected)]
+        compare_df = df3[df3["Company Name"].isin(tickers_selected)]
         fig_compare = px.line(compare_df, x="Date", y="Close", color="Ticker", title="Stock Comparison")
         st.plotly_chart(fig_compare, use_container_width=True)
 
