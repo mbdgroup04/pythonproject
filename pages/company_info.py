@@ -18,6 +18,7 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     company_info = companies[companies["Ticker"] == selected_ticker]
     stock_df=df3[df3["Ticker"]==selected_ticker]
 
+
     # Display company details
     if not company_info.empty:
         st.write(f"### {company_info.iloc[0]['Company Name']}")
