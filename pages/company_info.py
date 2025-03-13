@@ -17,8 +17,8 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     col2.metric("Avg. Employees per Company", f"{avg_employees:,.0f}")
 
     # Dropdown to select a company
-    ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
-    company_info = companies[companies["Ticker"] == ticker]
+    selected_ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
+    company_info = companies[companies["Ticker"] == selected_ticker]
 
     # Display company details
     if not company_info.empty:
@@ -29,15 +29,6 @@ def display(companies):  # ✅ Accept 'companies' as an argument
         st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
     else:
         st.warning("⚠️ No company data available.")
-
-    # Sidebar Filters
-    st.sidebar.markdown("### 🔍 Filter Companies")
-    selected_ticker = st.sidebar.selectbox("Select a Company", ["All"] + list(companies["Company Name"].dropna().unique()))
-    selected_year = st.sidebar.selectbox("Filter by Financial Year-End", ["All"] + sorted(companies["End of financial year (month)"].dropna().astype(str).unique()))
-    selected_size = st.sidebar.slider("Filter by Number of Employees", 
-                                        min_value=0, 
-                                        max_value=int(companies["Number Employees"].fillna(0).max()), 
-                                        value=(0, int(companies["Number Employees"].fillna(0).max())))
 
     # Apply Filters
     filtered_companies = companies.copy()
