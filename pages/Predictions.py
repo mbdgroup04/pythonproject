@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import PySimFin as psf
+import datetime
 
 # Load Data
 @st.cache_data
@@ -16,6 +18,7 @@ def load_data():
 stock_data = load_data()
 
 st.title("🔮 Market Predictions")
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 
 st.markdown("""
     📌 **This page provides predictive analytics based on historical stock data.**
@@ -47,11 +50,16 @@ if stock_df.empty:
     st.warning("No stock data available for this company.")
     st.stop()  # Use st.stop() instead of return
 
-# 📈 Show a line chart of historical stock prices
-st.markdown("### 📈 Historical Stock Price Trend")
-fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
-st.plotly_chart(fig, use_container_width=True)
+min_date = datetime.date(2018, 1, 1)
+max_date = datetime.date.today()
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+col1,col2=st.columns(2)
+with col1:
+    start_date=st.date_input('Please insert start date',min_value=min_date,max_value=max_date)
+with col2:
+    end_date=st.date_input('Please insert end date',min_value=min_date,max_value=max_date)
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+st.title("Prediction result:")
+input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 
-# ✅ Placeholder: Add Machine Learning Predictions Here
-st.markdown("### 🔍 Future Stock Price Predictions (Coming Soon!)")
-st.info("📊 Predictive analytics models will be integrated soon.")
+#if selected_ticker=='AAPL':
