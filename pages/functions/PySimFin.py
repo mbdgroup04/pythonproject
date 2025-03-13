@@ -1,6 +1,6 @@
 import requests
 import logging
-from datetime import datetime, timedelta
+import datetime
 from Exceptions import InvalidFinalDate, InvalidInitialDate
 from dotenv import load_dotenv
 import os
