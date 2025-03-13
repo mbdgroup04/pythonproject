@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import pages.functions.PySimFin as psf
+from pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
@@ -64,4 +65,24 @@ st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br
 st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 
-#if selected_ticker=='AAPL':
+model_AAPL=pickle.load(open('picklemodel_AAPL.pkl','rb'))
+model_AMZN=pickle.load(open('picklemodel_AMZN.pkl','rb'))
+model_GOOG=pickle.load(open('picklemodel_GOOG.pkl','rb'))
+model_MSFT=pickle.load(open('picklemodel_MSFT.pkl','rb'))
+model_TSLA=pickle.load(open('picklemodel_TSLA.pkl','rb'))
+
+if selected_ticker=='AAPL':
+    prediction=model_AAPL.predict(input_data)
+elif selected_ticker=='AMZN':
+    prediction=model_AMZN.predict(input_data)
+elif selected_ticker=='GOOG':
+    prediction=model_GOOG.predict(input_data)
+elif selected_ticker=='MSFT':
+    prediction=model_MSFT.predict(input_data)
+elif selected_ticker=='TSLA':
+    prediction=model_TSLA.predict(input_data)
+else:
+    raise InvalidTicker('Please insert a valid ticker.')
+
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>Next's day's price is: {prediction}</p>", unsafe_allow_html=True)
