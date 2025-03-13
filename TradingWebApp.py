@@ -13,9 +13,5 @@ def load_data():
 
 companies = load_data()  # ✅ Ensure 'companies' is defined
 
-# Sidebar Navigation
-st.sidebar.title("Trading System Dashboard")
-page = st.sidebar.radio("Navigate", ["Home", "Company Info", "Stock Prices", "Predictions", "Strategy", "Personal Profile"])
-
 st.sidebar.markdown("---")
 st.sidebar.markdown("Developed with ❤️ using Streamlit")
