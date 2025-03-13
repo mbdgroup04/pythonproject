@@ -87,4 +87,6 @@ else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{round(prediction,2)} $</p>", unsafe_allow_html=True)
+col1,col2,col3=st.columns(3)
+with col2:
+    st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{round(prediction,2)} $</p>", unsafe_allow_html=True)
