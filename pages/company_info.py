@@ -83,10 +83,10 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     st.plotly_chart(fig_candle, use_container_width=True)
 
     st.markdown("### 📊 Compare Stocks")
-    tickers_selected = st.multiselect("Select multiple stocks:", df3["Company Name"].unique(), default=[selected_ticker])
+    tickers_selected = st.multiselect("Select multiple stocks:", df3["Ticker"].unique(), default=[selected_ticker])
     
     if tickers_selected:
-        compare_df = df3[df3["Company Name"].isin(tickers_selected)]
+        compare_df = df3[df3["Ticker"].isin(tickers_selected)]
         fig_compare = px.line(compare_df, x="Date", y="Close", color="Ticker", title="Stock Comparison")
         st.plotly_chart(fig_compare, use_container_width=True)
 
