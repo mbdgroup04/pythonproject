@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly.express as px
 import pages.functions.PySimFin as psf
 from pages.functions.Exceptions import InvalidTicker
@@ -64,7 +65,7 @@ with col2:
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
-latest_data = input_data(1, -1)
+latest_data=np.array([input_data],dtype=object)
 
 model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
 model_AMZN=pickle.load(open('models/picklemodel_AMZN.pkl','rb'))
