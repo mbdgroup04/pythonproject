@@ -65,11 +65,11 @@ st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br
 st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 
-model_AAPL=pickle.load(open('picklemodel_AAPL.pkl','rb'))
-model_AMZN=pickle.load(open('picklemodel_AMZN.pkl','rb'))
-model_GOOG=pickle.load(open('picklemodel_GOOG.pkl','rb'))
-model_MSFT=pickle.load(open('picklemodel_MSFT.pkl','rb'))
-model_TSLA=pickle.load(open('picklemodel_TSLA.pkl','rb'))
+model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
+model_AMZN=pickle.load(open('models/picklemodel_AMZN.pkl','rb'))
+model_GOOG=pickle.load(open('models/picklemodel_GOOG.pkl','rb'))
+model_MSFT=pickle.load(open('models/picklemodel_MSFT.pkl','rb'))
+model_TSLA=pickle.load(open('models/picklemodel_TSLA.pkl','rb'))
 
 if selected_ticker=='AAPL':
     prediction=model_AAPL.predict(input_data)
