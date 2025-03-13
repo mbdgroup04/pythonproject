@@ -7,7 +7,6 @@ import pages.Strategy as strategy
 import pages.Meet_the_Team as Meet_the_Team
 
 # Load Data
-@st.cache_data
 def load_data():
     companies = pd.read_csv("companies.csv")  
     return companies
