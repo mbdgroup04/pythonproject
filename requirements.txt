@@ -3,6 +3,5 @@ numpy
 pandas
 scikit-learn
 datetime
-pickle
 python-dotenv
 plotly
