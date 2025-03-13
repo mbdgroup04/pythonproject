@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from PySimFin import PySimFin
+import functions.PySimFin
 import datetime
 import pickle
 

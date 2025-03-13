@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Function to display the banner
-#def display_banner():
-    #st.image("stockimage.jpg", use_column_width=True)
-
 # Function to display team member profiles
 def display_team_member(name, role, bio, fun_fact, image_path):
     col1, col2 = st.columns([1, 3])
@@ -19,9 +15,6 @@ def display_team_member(name, role, bio, fun_fact, image_path):
 # Main function to display the Home page
 
 st.title("📈 Automated Daily Trading System")
-
-# Display Banner
-#display_banner()
 
 # System Overview
 st.markdown("## Overview")
