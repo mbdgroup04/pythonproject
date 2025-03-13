@@ -61,6 +61,6 @@ with col2:
     end_date=st.date_input('Please insert end date',min_value=min_date,max_value=max_date)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.title("Prediction result:")
-input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
+input_data=PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 
 #if selected_ticker=='AAPL':
