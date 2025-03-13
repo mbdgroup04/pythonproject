@@ -30,6 +30,13 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     else:
         st.warning("⚠️ No company data available.")
 
+    # Sidebar Filters
+    selected_year = st.sidebar.selectbox("Filter by Financial Year-End", ["All"] + sorted(companies["End of financial year (month)"].dropna().astype(str).unique()))
+    selected_size = st.sidebar.slider("Filter by Number of Employees", 
+                                        min_value=0, 
+                                        max_value=int(companies["Number Employees"].fillna(0).max()), 
+                                        value=(0, int(companies["Number Employees"].fillna(0).max())))
+
     # Apply Filters
     filtered_companies = companies.copy()
     if selected_ticker != "All":
