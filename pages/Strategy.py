@@ -6,7 +6,7 @@ import plotly.express as px
 @st.cache_data
 def load_data():
     try:
-        stock_data = pd.read_csv("shareprices.csv")  # Ensure the file exists
+        stock_data = pd.read_csv("data/shareprices.csv")  # Ensure the file exists
         stock_data["Date"] = pd.to_datetime(stock_data["Date"])  # Convert Date column
         return stock_data
     except Exception as e:

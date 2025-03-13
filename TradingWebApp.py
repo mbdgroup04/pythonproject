@@ -7,7 +7,7 @@ import pages.Meet_the_Team as Meet_the_Team
 
 # Load Data
 def load_data():
-    companies = pd.read_csv("companies.csv")  
+    companies = pd.read_csv("data/companies.csv")  
     return companies
 
 companies = load_data()

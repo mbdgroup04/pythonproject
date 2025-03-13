@@ -11,7 +11,7 @@ import pickle
 @st.cache_data
 def load_data():
     try:
-        stock_data = pd.read_csv("shareprices.csv")  # Ensure this file has stock data
+        stock_data = pd.read_csv("data/shareprices.csv")  # Ensure this file has stock data
         stock_data["Date"] = pd.to_datetime(stock_data["Date"])  # Convert Date to datetime format
         return stock_data
     except Exception as e:

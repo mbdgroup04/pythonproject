@@ -7,7 +7,7 @@ def display(companies):  # ✅ Accept 'companies' as an argument
     if companies.empty:
         st.error("⚠️ No company data available.")
         return
-    df3=pd.read_csv("shareprices.csv")
+    df3=pd.read_csv("data/shareprices.csv")
     # KPIs
     total_companies = companies.shape[0]
     avg_employees = companies["Number Employees"].mean()
