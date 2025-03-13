@@ -1,9 +1,7 @@
-pip>=25.0.1
 streamlit
 numpy
 pandas
 scikit-learn
 datetime
-pickle
 python-dotenv
 plotly
