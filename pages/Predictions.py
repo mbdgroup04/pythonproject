@@ -51,8 +51,8 @@ if stock_df.empty:
     st.warning("No stock data available for this company.")
     st.stop()  # Use st.stop() instead of return
 
-min_date = datetime.date(2018, 1, 1)
-max_date = datetime.date.today()
+min_date = str(datetime.date(2018, 1, 1))
+max_date = str(datetime.date.today())
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 col1,col2=st.columns(2)
