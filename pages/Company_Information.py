@@ -48,9 +48,10 @@ def display(companies):
         st.write(f"### {selected_comp_name}")
         cola,colb=st.columns(2)
         with cola:
-            st.write(f"**Market:** {company_info.iloc[0]['Market']}")
+            st.markdown(f'<p style="font-size:16px; text-align:center; font-weight:bold; ">Market: {company_info.iloc[0]['Market']}</p>', unsafe_allow_html=True)
         with colb:
-            st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
+            st.markdown(f'<p style="font-size:16px; text-align:center; font-weight:bold; ">Currency: {company_info.iloc[0]['Main Currency']}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
         colc,cold,cole,colf=st.columns(4)
         colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))    
         cold.metric(f"**Fical Year selected**", f"{selected_year}")
@@ -69,7 +70,6 @@ def display(companies):
         else:
             change_value = "N/A"
 
-    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Current Price:</p>', unsafe_allow_html=True)
     st.metric(label="", value=f"${latest_data['Close']:.2f}", delta=change_value)
     
