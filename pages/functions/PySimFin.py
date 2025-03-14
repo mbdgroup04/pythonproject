@@ -16,13 +16,13 @@ logging.basicConfig(
 class PySimFin:
   def __init__(self):
     load_dotenv("functions/api.env")
-    self.__api_key=os.getenv('TMDB_API_KEY')
+    self.__api_key=os.getenv('TMBD_API_KEY')
     self.__headers={'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
 
   def get_share_prices(self,ticker:str,start:str,end:str):
     logging.info('Checking the initial and final dates to prevent errors in the web.')
-    
+
     if start>end or start<='2018-03-05':
       raise InvalidInitialDate('Cannot input initial date greater than final date nor before 2018-03-05')
     elif end<start or end>='2025-04-30':
