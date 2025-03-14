@@ -23,7 +23,7 @@ def display_team_member(name, role, bio, fun_fact, image_path):
 
 
 PAGES = {
-    "Home": None,
+    "Home": "Home.py",
     "Company Information": "pages/Company_Information.py",
     "Trading Recommendation": "pages/Trading_Recommendation.py",
     "Meet The Team": "pages/Meet_the_Team.py",
