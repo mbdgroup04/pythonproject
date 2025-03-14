@@ -56,7 +56,6 @@ with col1:
 with col2:
     end_date=str(st.date_input('Please insert end date',min_value=min_date,max_value=max_date))
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-st.title("Prediction result:")
 input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 latest_data=np.array([input_data],dtype=object)
 
@@ -79,11 +78,6 @@ elif selected_ticker=='TSLA':
 else:
     raise InvalidTicker('Please insert a valid ticker.')
 
-col1,col2,col3=st.columns(3)
-with col2:
-    st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-
 last_stock_df=stock_df[stock_df["Date"] <= pd.to_datetime(end_date)]
 st.markdown("### 📊 Historical Stock Price Trend + Predicted Price")
 fig = px.line(last_stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
@@ -95,3 +89,9 @@ fig.add_scatter(
     name="Predicted Price"
 )
 st.plotly_chart(fig, use_container_width=True)
+
+st.title("Next day's price:")
+col1,col2,col3=st.columns(3)
+with col2:
+    st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)

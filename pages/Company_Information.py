@@ -61,7 +61,7 @@ def display(companies):
     st.metric(label="", value=f"${latest_data['Close']:.2f}", delta=change_value)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Metrics in average:</p>', unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>{selected_ticker}'s metrics in average:</p>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("📈 Open", f"${latest_data['Open']:.2f}")
     col2.metric("📉 Low", f"${latest_data['Low']:.2f}")
