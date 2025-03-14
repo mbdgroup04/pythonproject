@@ -54,7 +54,7 @@ fig = px.line(stock_df, x="Date", y="Close", title="")
 
 def predict_price():
     start_date='2018-01-01'
-    end_date=str(datetime.today())
+    end_date=str(datetime.datetime.today())
     input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
     latest_data=np.array([input_data],dtype=object)
     model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))

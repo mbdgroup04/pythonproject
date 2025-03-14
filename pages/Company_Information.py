@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import pages.functions.PySimFin as psf
 from pages.functions.Exceptions import InvalidTicker
-from datetime import datetime,today
+import datetime
 
 st.markdown(
     """
