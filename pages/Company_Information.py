@@ -40,9 +40,17 @@ def display(companies):
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]
     selected_ticker=stock_df.iloc[0]["Ticker"]
-    year_list=['2021','2022','2023','2024']
+    year_list=['2020','2021','2022','2023','2024']
     selected_year=st.selectbox("Please select a fiscal year:",year_list)
     state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
+    if state_data[1]!=0:
+        revenue=f"{state_data[1]:,}"
+    else:
+        revenue="No data available"
+    if state_data[2]!=0:
+        gross_profit=f"{state_data[2]:,}"
+    else:
+        gross_profit="No data available"
 
     if not company_info.empty:
         st.markdown(f'<p style="font-size:36px; text-align:center; font-weight:bold; ">{selected_comp_name}</p>', unsafe_allow_html=True)
@@ -55,8 +63,8 @@ def display(companies):
         colc,cold,cole,colf=st.columns(4)
         colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))    
         cold.metric(f"**Fical Year selected**", f"{selected_year}")
-        cole.metric(f"**Revenue**", f"${state_data[1]:,}")
-        colf.metric(f"**Gross Profit**", f"${state_data[2]:,}")
+        cole.metric(f"**Revenue**", f"${revenue}")
+        colf.metric(f"**Gross Profit**", f"${gross_profit}")
     else:
         st.warning("⚠️ No company data available.")
 
