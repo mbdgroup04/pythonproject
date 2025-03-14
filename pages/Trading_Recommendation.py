@@ -53,10 +53,9 @@ st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br
 fig = px.line(stock_df, x="Date", y="Close", title="")
 
 start_date='2018-03-06'
-end_date=datetime.datetime.today()
-new_date=f"{end_date[0]}-{end_date[1]}-{end_date[2]}"
+end_date=datetime.datetime.today().strftime('%Y-%m-%d')
 
-input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,new_date)
+input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
 latest_data=np.array([input_data],dtype=object)
 
 model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
