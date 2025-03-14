@@ -53,6 +53,7 @@ def display(companies):
         gross_profit="NaN"
 
     if not company_info.empty:
+        st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
         st.markdown(f'<p style="font-size:36px; text-align:center; font-weight:bold; ">{selected_comp_name}</p>', unsafe_allow_html=True)
         cola,colb=st.columns(2)
         with cola:
@@ -70,19 +71,12 @@ def display(companies):
 
     latest_data = stock_df.iloc[-1]
 
-    if 'Change' in stock_df.columns:
-        change_value = f"{latest_data['Change']}%"
-    else:
-        if len(stock_df) > 1:
-            change_value = f"{((latest_data['Close'] - stock_df.iloc[-2]['Close']) / stock_df.iloc[-2]['Close'] * 100):.2f}%"
-        else:
-            change_value = "N/A"
-
-    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Current Price:</p>', unsafe_allow_html=True)
-    st.metric(label="", value=f"${latest_data['Close']:.2f}", delta=change_value)
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's Price:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>${latest_data['Close']:.2f}</p>", unsafe_allow_html=True)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>{selected_comp_name}'s metrics in average:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{selected_comp_name}'s metrics in average:</p>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("📈 Open", f"${latest_data['Open']:.2f}")
     col2.metric("📉 Low", f"${latest_data['Low']:.2f}")
@@ -90,7 +84,7 @@ def display(companies):
     col4.metric("🔄 Volume", f"{latest_data['Volume']:,}")
 
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown("### 📊 Candlestick Chart")
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>📊 Candlestick Chart</p>", unsafe_allow_html=True)
     fig_candle = go.Figure(data=[
         go.Candlestick(
             x=stock_df["Date"],
@@ -104,7 +98,7 @@ def display(companies):
     fig_candle.update_layout(title=f"{selected_comp_name}", template="plotly_dark",xaxis_title="Date",yaxis_title="Close")
     st.plotly_chart(fig_candle, use_container_width=True)
 
-    st.markdown("### 📊 Compare Stocks")
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>📊 Stock Comparison</p>", unsafe_allow_html=True)
     comps_selected = st.multiselect("Please select multiple companies:", df3["Company Name"].unique(), default=[selected_comp_name])
     
     if comps_selected:
