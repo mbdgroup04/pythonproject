@@ -49,3 +49,8 @@ if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 if st.button('I WANT TO PREDICT'):
     st.session_state.current_page = "Trading Recommendation"
+current_page = st.session_state.current_page
+if PAGES[current_page]:
+    # If there's a file path, execute the page script
+    with open(PAGES[current_page], "r") as file:
+        exec(file.read())
