@@ -42,7 +42,7 @@ def display(companies):
     selected_ticker=stock_df.iloc[0]["Ticker"]
     year_list=['2018','2019','2020','2021','2022','2023','2024']
     selected_year=st.selectbox("Please select a fiscal year:",year_list)
-    state_data=psf.PySimFin().get_financial_statement(selected_ticker,selected_year)
+    state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
 
     if not company_info.empty:
         st.write(f"### {selected_comp_name}")

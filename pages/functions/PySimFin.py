@@ -43,7 +43,7 @@ class PySimFin:
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
   
   
-  def get_financial_statement(self,ticker:str,year:str):
+  def get_financial_statements(self,ticker:str,year:str):
     load_dotenv('api.env')
     self.__api_key=os.getenv('TMBD_API_KEY')
     self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
