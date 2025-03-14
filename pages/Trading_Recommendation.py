@@ -48,8 +48,6 @@ selected_comp_name = st.selectbox("", stock_data["Company Name"].unique())
 stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
 selected_ticker=stock_df.iloc[0]["Ticker"]
 
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-
 fig = px.line(stock_df, x="Date", y="Close", title="")
 
 start_date='2018-03-06'
@@ -86,10 +84,12 @@ def price_predict():
 
 if st.button("PREDICT"):
     price_predict()
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"### 📊 Historical Stock Price + Predicted Price for {selected_comp_name}")
     fig.add_scatter(x=[end_date],y=[prediction],mode="markers",marker=dict(color="red", size=10, symbol="star"),name="Predicted Price")
     st.plotly_chart(fig, use_container_width=True)
 
 else:
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"### 📊 Historical Stock Price for {selected_comp_name}")
     st.plotly_chart(fig, use_container_width=True)
