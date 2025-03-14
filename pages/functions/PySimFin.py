@@ -49,9 +49,21 @@ class PySimFin:
     if response.status_code == 200:
       data = response.json()
       if data!=[] and data[0]['statements']!=[]:
+        rev_list=[]
+        gross_list=[]
+        for i in data[0]['statements'][0]['data']:
+          if i['Fiscal Period'] in ["Q1","Q2","Q3","Q4"]:
+            rev_list.append(i['Revenue'])
+            gross_list.append(i['Gross Profit'])
         fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
-        revenue=data[0]['statements'][0]['data'][0]['Revenue']
-        gross_profit=data[0]['statements'][0]['data'][0]['Gross Profit']
+        sum_rev=0
+        sum_gross=0
+        for j in rev_list:
+          sum_rev+=j
+        for k in gross_list:
+          sum_gross+=k
+        revenue=round(sum_rev/len(rev_list),2)
+        gross_profit=round(sum_gross/len(gross_list),2)
         state_list=[fiscal_year,revenue,gross_profit]
         return state_list
       else:
