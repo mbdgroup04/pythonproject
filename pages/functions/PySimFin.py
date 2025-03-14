@@ -35,7 +35,7 @@ class PySimFin:
           for i in data[0]['data']:
             data_list.append(i['Last Closing Price'])
           last_list=data_list[-3:]
-          return f'The closing prices for the given dates are: {last_list}'
+          return last_list
         else:
           return f'No data available between {start} and {end}.'
       else:
