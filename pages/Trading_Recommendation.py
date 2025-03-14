@@ -43,6 +43,11 @@ def load_data():
 
 stock_data = load_data()
 
+col1,col2,col3=st.columns(3)
+with col2:
+    st.image("data/logo.jpg", width=200)
+    st.title('Trading Recommendation')
+
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Select a company to predict the closing price for tomorrow:</p>', unsafe_allow_html=True)
 comp_name = st.selectbox("", ['Apple','Amazon','Google','Microsoft','Tesla'])
 if comp_name=='Apple':

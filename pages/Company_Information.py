@@ -42,6 +42,11 @@ def display(companies):
         return
     df3=pd.read_csv("data/shareprices.csv")
 
+    col1,col2,col3=st.columns(3)
+    with col2:
+        st.image("data/logo.jpg", width=200)
+        st.title('Company Information')
+
     selected_comp_name = st.selectbox("Please select a company:", companies["Company Name"].unique())
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]

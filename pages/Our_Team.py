@@ -36,7 +36,11 @@ def display_team_member(name, role, bio, fun_fact, image_path):
         st.write(bio)
         st.markdown(f"💡 *{fun_fact}*")
 
-st.markdown("## 👥 Meet the Team")
+col1,col2,col3=st.columns(3)
+with col2:
+    st.image("data/logo.jpg", width=200)
+    st.title('Our Team')
+
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown("Our team brings together expertise in machine learning, financial analytics, business strategy, and web development.")
 
