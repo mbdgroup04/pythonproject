@@ -43,17 +43,18 @@ class PySimFin:
   
   
   def get_financial_statements(self,ticker:str,year:str):
-    self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
-    self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
-    self.url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear=2021%2C2023&start={str(int(year)-1)}-01-01&end={year}-01-01'
-    response=requests.get(self.url,headers=self.__headers)
+    self.__url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear=2021%2C2023&start={str(int(year)-1)}-01-01&end={year}-01-01'
+    response=requests.get(self.__url,headers=self.__headers)
     if response.status_code == 200:
       data = response.json()
-      fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
-      revenue=data[0]['statements'][0]['data'][0]['Revenue']
-      gross_profit=data[0]['statements'][0]['data'][0]['Gross Profit']
-      state_list=[fiscal_year,revenue,gross_profit]
-      return state_list
+      if data!=[]:
+        fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
+        revenue=data[0]['statements'][0]['data'][0]['Revenue']
+        gross_profit=data[0]['statements'][0]['data'][0]['Gross Profit']
+        state_list=[fiscal_year,revenue,gross_profit]
+        return state_list
+      else:
+        return f'No data available'
     else:
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
