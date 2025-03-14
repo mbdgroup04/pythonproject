@@ -1,24 +1,86 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
+import numpy as np
 import pages.functions.PySimFin as psf
 from pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
-# Load Data
 @st.cache_data
 def load_data():
     try:
-        stock_data = pd.read_csv("data/shareprices.csv")  # Ensure this file has stock data
-        stock_data["Date"] = pd.to_datetime(stock_data["Date"])  # Convert Date to datetime format
+        stock_data = pd.read_csv("data/shareprices.csv")
+        stock_data["Date"] = pd.to_datetime(stock_data["Date"])
         return stock_data
     except Exception as e:
         st.error(f"Error loading data: {e}")
-        return pd.DataFrame()  # Return empty DataFrame if error occurs
+        return pd.DataFrame()
 
 stock_data = load_data()
+
+if stock_data.empty:
+    st.error("⚠️ No stock data available. Please upload a valid CSV file.")
+    st.stop()
+
+if "Ticker" not in stock_data.columns or "Close" not in stock_data.columns:
+    st.error("The dataset does not contain the required 'Ticker' or 'Close' column.")
+    st.stop()
+
+selected_ticker = st.selectbox("📌 Choose a stock ticker:", stock_data["Ticker"].unique())
+
+stock_df = stock_data[stock_data["Ticker"] == selected_ticker]
+
+if stock_df.empty:
+    st.warning("⚠️ No stock data available for this company.")
+    st.stop() 
+
+last_close_price = round(stock_df.iloc[-1]["Close"],2)
+
+if "toggle" not in st.session_state:
+    st.session_state["toggle"] = False
+
+if st.button("🔀 Randomize Prediction"):
+    next_day_price = last_close_price * (1 + (0.05 * (-1 if st.session_state["toggle"] else 1)))
+    st.session_state["toggle"] = not st.session_state["toggle"]
+else:
+    next_day_price = round(last_close_price * 1.02,2)
+
+upper_threshold = round(last_close_price * 1.10,2)
+lower_threshold = round(last_close_price * 0.95,2)
+
+if next_day_price > upper_threshold:
+    action = "✅ BUY"
+    action_color = "green"
+elif lower_threshold <= next_day_price <= upper_threshold:
+    action = "⏳ HOLD"
+    action_color = "yellow"
+else:
+    action = "❌ SELL"
+    action_color = "red"
+
+st.markdown(f"""
+### 📈 Trading Decision
+- **Predicted Price:** ${next_day_price:.2f}
+- **Last Close Price:** ${last_close_price:.2f}
+- **Action:** <span style="color:{action_color}; font-weight:bold;">{action}</span>
+""", unsafe_allow_html=True)
+
+st.markdown("### 📊 Historical Stock Price Trend")
+fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
+st.plotly_chart(fig, use_container_width=True)
+
+st.markdown("### 🔍 Predicted Price vs. Trading Thresholds")
+threshold_df = pd.DataFrame({
+    "Category": ["Lower Threshold (-5%)", "Last Close Price", "Upper Threshold (+10%)", "Predicted Price"],
+    "Price": [lower_threshold, last_close_price, upper_threshold, next_day_price]
+})
+
+fig_threshold = px.bar(threshold_df, x="Category", y="Price", 
+                        color="Category", title="Thresholds & Predicted Price", text="Price")
+fig_threshold.update_layout(showlegend=False)
+st.plotly_chart(fig_threshold, use_container_width=True)
+
 
 st.title("🔮 Market Predictions")
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
@@ -31,27 +93,22 @@ st.markdown("""
     - **Compare predicted vs. actual prices**
 """)
 
-# Ensure stock_data is not empty before proceeding
 if stock_data.empty:
     st.error("No stock data available. Please upload a valid CSV file.")
     st.stop()
 
-# Check if 'Ticker' exists in the dataset
 if "Ticker" not in stock_data.columns:
     st.error("The dataset does not contain a 'Ticker' column.")
     st.stop()
 
-# Dropdown to select a stock
 st.markdown("### Select a Company for Prediction")
 selected_ticker = st.selectbox("Choose a stock ticker:", stock_data["Ticker"].unique())
 
-# Filter stock data for the selected ticker
 stock_df = stock_data[stock_data["Ticker"] == selected_ticker]
 
-# Ensure stock data exists
 if stock_df.empty:
     st.warning("No stock data available for this company.")
-    st.stop()  # Use st.stop() instead of return
+    st.stop()
 
 min_date = datetime.date(2018, 1, 1)
 max_date = datetime.date.today()

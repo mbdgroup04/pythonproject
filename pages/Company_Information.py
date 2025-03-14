@@ -3,22 +3,17 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-def display(companies):  # ✅ Accept 'companies' as an argument
+@st.cache_data
+def display(companies):
     if companies.empty:
         st.error("⚠️ No company data available.")
         return
     df3=pd.read_csv("data/shareprices.csv")
-    # KPIs
-    total_companies = companies.shape[0]
-    avg_employees = companies["Number Employees"].mean()
-    top_industries = companies["IndustryId"].value_counts().head(5)
 
-    # Dropdown to select a company
     selected_ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
     company_info = companies[companies["Ticker"] == selected_ticker]
     stock_df=df3[df3["Ticker"]==selected_ticker]
 
-    # Display company details
     if not company_info.empty:
         st.write(f"### {company_info.iloc[0]['Company Name']}")
         st.write(f"**Industry ID:** {company_info.iloc[0]['IndustryId']}")
@@ -30,7 +25,6 @@ def display(companies):  # ✅ Accept 'companies' as an argument
 
     latest_data = stock_df.iloc[-1]
 
-    # Handle Missing 'Change' Column
     if 'Change' in stock_df.columns:
         change_value = f"{latest_data['Change']}%"
     else:
@@ -39,10 +33,12 @@ def display(companies):  # ✅ Accept 'companies' as an argument
         else:
             change_value = "N/A"
 
-    # Display Stock Metrics
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.metric(label="Current Price", value=f"${latest_data['Close']:.2f}", delta=change_value)
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Current Price:</p>', unsafe_allow_html=True)
+    st.metric(label="", value=f"${latest_data['Close']:.2f}", delta=change_value)
     
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+    st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Metrics in average:</p>', unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("📈 Open", f"${latest_data['Open']:.2f}")
     col2.metric("📉 Low", f"${latest_data['Low']:.2f}")

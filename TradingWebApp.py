@@ -1,18 +1,16 @@
 import streamlit as st
 import pandas as pd
-import pages.Company_Information as company_info 
-import pages.Predictions as predictions  
-import pages.Strategy as strategy  
-import pages.Meet_the_Team as Meet_the_Team
+import pages.Company_Information
+import pages.Trading_Recommendation
+import pages.Meet_the_Team
 
-# Load Data
+@st.cache_data
 def load_data():
     companies = pd.read_csv("data/companies.csv")  
     return companies
 
 companies = load_data()
 
-# Function to display team member profiles
 def display_team_member(name, role, bio, fun_fact, image_path):
     col1, col2 = st.columns([1, 3])
     with col1:
@@ -23,11 +21,8 @@ def display_team_member(name, role, bio, fun_fact, image_path):
         st.write(bio)
         st.markdown(f"🎉 **Fun Fact:** {fun_fact}")
 
-# Main function to display the Home page
-
 st.title("📈 Automated Daily Trading System")
 
-# System Overview
 st.markdown("## Overview")
 st.markdown(
     """
@@ -38,7 +33,6 @@ st.markdown(
     """
 )
 
-# System Purpose and Objectives
 st.markdown("## System Purpose & Objectives")
 st.markdown(
     """
