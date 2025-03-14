@@ -60,7 +60,7 @@ stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
 selected_ticker=stock_df.iloc[0]["Ticker"]
 
 max_fict=stock_df['Close'].max()
-mid_fict=stock_df['Close'].median()
+mid_fict=round(max_fict/2,2)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">First fictional closing price for {comp_name}</p>', unsafe_allow_html=True)
 fict1=st.slider("",min_value=0.0,max_value=max_fict,value=mid_fict,step=0.05,key='slider 1')
