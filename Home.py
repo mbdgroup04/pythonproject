@@ -45,7 +45,6 @@ st.markdown("""
 st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left;font-weight:bold;">Ready to Elevate Your Trading Game?</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; ">Sign up today and experience the future of AI-driven trading with TradeVision AI!</p>', unsafe_allow_html=True)
-if 'current_page' not in st.session_state:
-    st.session_state.current_page = "Home"
+website_url = "https://pythonproject-fsaanv6ra5zqqx7r2wch4a.streamlit.app/Trading_Recommendation"
 if st.button('I WANT TO PREDICT'):
-    st.page_link("https://www.google.com", label="Go to Google")
+    st.markdown(f'<meta http-equiv="refresh" content="0; URL={website_url}">', unsafe_allow_html=True)
