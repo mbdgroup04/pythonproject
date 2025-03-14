@@ -79,7 +79,7 @@ fict3=st.slider("",min_value=0.0,max_value=max_fict,value=mid_fict,step=0.05,key
 start_date='2018-03-06'
 end_date=datetime.datetime.today().strftime('%Y-%m-%d')
 
-input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
+input_data=[fict1,fict2,fict3]
 latest_data=np.array([input_data],dtype=object)
 
 model_AAPL=pickle.load(open('models/picklemodel_AAPL.pkl','rb'))
