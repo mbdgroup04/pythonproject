@@ -50,9 +50,9 @@ class PySimFin:
     response=requests.get(self.url,headers=self.__headers)
     if response.status_code == 200:
       data = response.json()
-      fiscal_year=str(data[0]['statements'][0]['data'][0]['Fiscal Year'])
-      revenue=str(data[0]['statements'][0]['data'][0]['Revenue'])
-      gross_profit=str(data[0]['statements'][0]['data'][0]['Gross Profit'])
+      fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
+      revenue=data[0]['statements'][0]['data'][0]['Revenue']
+      gross_profit=data[0]['statements'][0]['data'][0]['Gross Profit']
       state_list=[fiscal_year,revenue,gross_profit]
       return state_list
     else:
