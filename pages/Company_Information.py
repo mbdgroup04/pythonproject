@@ -50,8 +50,8 @@ def display(companies):
         st.write(f"**Market:** {company_info.iloc[0]['Market']}")
         st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
         st.write(f"**Fical Year selected:** {state_data[0]}")
-        st.write(f"**Revenue (in millions):** {state_data[1]/1000000:,}")
-        st.write(f"**Gross Profit (in millions):** {state_data[2]/1000000:,}")
+        st.write(f"**Revenue (in millions):** {state_data[1]//1000000:,}")
+        st.write(f"**Gross Profit (in millions):** {state_data[2]//1000000:,}")
     else:
         st.warning("⚠️ No company data available.")
 
