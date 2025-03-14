@@ -59,7 +59,7 @@ team_members = [
 
     ("Santiago Ruiz Hernández", "📌 Project Point Lead", 
         "🇪🇸 Santiago is from Valencia, Spain, and worked on **various aspects of the project**, acting as a key **point lead** to keep everything running smoothly. 🔄 His contributions touched on multiple areas of **EDA, strategy, and technical implementation**.",
-        "🎾 He **loves playing tennis** and is a **natural redhead**! 🔥", "data/santi.jpg"),
+        ":tennisball: He **loves playing padel** and is a **natural redhead**! 🔥", "data/santi.jpg"),
 
     ("Santiago Botero", "📈 EDA & Financial Insights", 
         "🇨🇴 Santiago is from Colombia, has a **finance background**, and is currently pursuing a **dual MBA**. 🎓 He was responsible for **exploratory data analysis (EDA)**, ensuring the financial data was properly analyzed and interpreted. 📉",
