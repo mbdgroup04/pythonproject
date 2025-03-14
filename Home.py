@@ -30,5 +30,14 @@ with col2:
 
 st.markdown(f'<p style="font-size:35px; text-align:left; ">Welcome to <b>TradeVision AI</b> -- Your Intelligent Market Companion</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:15px; text-align:left; ">You are now able to harness the power of AI for smarter trading decisions</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; "><b>TradeVision AI</b> is a cutting-edge, AI-driven market prediction platform designed to give traders a competitive edge. By leveraging advanced machine learning models and real-time financial data, we empower you with actionable insights for informed investment decisions.</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; font-weight:bold;">But why TradeVision AI?</p>', unsafe_allow_html=True)
+st.markdown("""
+- **AI-Powered Market Forecasts** – Our predictive models analyze historical trends and real-time market signals to anticipate stock movements with precision.
+- **Data-Driven Insights** – Access in-depth analytics and visualizations that decode complex financial patterns, helping you stay ahead of market trends.
+- **Live Data Integration** – Stay updated with real-time stock prices, financial indicators, and trading signals, seamlessly pulled from the SimFin API.
+- **Smart Trading Signals** – Receive clear Buy/Sell/Hold recommendations based on predictive analytics, simplifying decision-making for all traders.
+- **Cloud-Based & Accessible Anywhere** – Our sleek and interactive web app ensures seamless access from any device, anytime.
+""")
+st.markdown(f'<p style="font-size:25px; text-align:left;"></p>', unsafe_allow_html=True)
