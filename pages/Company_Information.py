@@ -45,7 +45,7 @@ def display(companies):
     col1,col2,col3=st.columns(3)
     with col2:
         st.image("data/logo.jpg", width=200)
-        st.title('Company Information')
+    st.markdown(f'<p style="font-size:40px; text-align:center; font-weight:bold; ">Company Information</p>', unsafe_allow_html=True)
 
     selected_comp_name = st.selectbox("Please select a company:", companies["Company Name"].unique())
     company_info = companies[companies["Company Name"] == selected_comp_name]
