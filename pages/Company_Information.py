@@ -61,7 +61,7 @@ def display(companies):
             st.markdown(f'<p style="font-size:16px; text-align:center; font-weight:bold; ">Currency: {company_info.iloc[0]['Main Currency']}</p>', unsafe_allow_html=True)
         st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
         colc,cold,cole,colf=st.columns(4)
-        colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))    
+        colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}")    
         cold.metric(f"**Fical Year selected**", f"{selected_year}")
         cole.metric(f"**Revenue (in millions)**", f"{revenue}")
         colf.metric(f"**Gross Profit (in millions)**", f"{gross_profit}")
