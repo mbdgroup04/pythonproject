@@ -84,12 +84,11 @@ def price_predict():
     with col2:
         st.markdown(f"<p style='font-size:22px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
 
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-
 if st.button("PREDICT"):
     price_predict()
     st.markdown(f"### 📊 Historical Stock Price + Predicted Price for {selected_comp_name}")
     fig.add_scatter(x=[end_date],y=[prediction],mode="markers",marker=dict(color="red", size=10, symbol="star"),name="Predicted Price")
+    st.plotly_chart(fig, use_container_width=True)
 
 else:
     st.markdown(f"### 📊 Historical Stock Price for {selected_comp_name}")
