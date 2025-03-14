@@ -14,8 +14,7 @@ logging.basicConfig(
 
 class PySimFin:
   def __init__(self):
-    load_dotenv('api.env')
-    self.__api_key=os.getenv('TMBD_API_KEY')
+    self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
     self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
   def get_share_prices(self,ticker:str,start:str,end:str):
@@ -36,7 +35,7 @@ class PySimFin:
           for i in data[0]['data']:
             data_list.append(i['Last Closing Price'])
           last_list=data_list[-3:]
-          return f'The closing prices for the given dates are: {last_list}'#\nThe predicted closing price for the next day is:{next_day_price:.2f}.'
+          return f'The closing prices for the given dates are: {last_list}'
         else:
           return f'No data available between {start} and {end}.'
       else:
@@ -44,8 +43,7 @@ class PySimFin:
   
   
   def get_financial_statements(self,ticker:str,year:str):
-    load_dotenv('api.env')
-    self.__api_key=os.getenv('TMBD_API_KEY')
+    self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
     self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
     self.url=f'https://backend.simfin.com/api/v3/companies/financials/statements/verbose?ticker={ticker}&statements=PL&fyear=2021%2C2023&start={str(int(year)-1)}-01-01&end={year}-01-01'
