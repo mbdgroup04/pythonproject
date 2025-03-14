@@ -48,4 +48,4 @@ st.markdown(f'<p style="font-size:25px; text-align:left; ">Sign up today and exp
 if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 if st.button('I WANT TO PREDICT'):
-    st.page_link("https://pythonproject-fsaanv6ra5zqqx7r2wch4a.streamlit.app/Trading_Recommendation", label="Go to Google")
+    st.page_link("https://www.google.com", label="Go to Google")
