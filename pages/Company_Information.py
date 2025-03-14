@@ -46,12 +46,16 @@ def display(companies):
 
     if not company_info.empty:
         st.write(f"### {selected_comp_name}")
-        st.write(f"**Number of Employees:** {int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))
-        st.write(f"**Market:** {company_info.iloc[0]['Market']}")
-        st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
-        st.write(f"**Fical Year selected:** {state_data[0]}")
-        st.write(f"**Revenue (in millions):** ${state_data[1]//1000000:,}")
-        st.write(f"**Gross Profit (in millions):** ${state_data[2]//1000000:,}")
+        cola,colb=st.columns(2)
+        with cola:
+            st.write(f"**Market:** {company_info.iloc[0]['Market']}")
+        with colb:
+            st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
+        colc,cold,cole,colf=st.columns(4)
+        colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))    
+        cold.metric(f"**Fical Year selected**", f"{selected_year}")
+        cole.metric(f"**Revenue (in millions)**", f"${state_data[1]//1000000:,}")
+        colf.metric(f"**Gross Profit (in millions)**", f"${state_data[2]//1000000:,}")
     else:
         st.warning("⚠️ No company data available.")
 
