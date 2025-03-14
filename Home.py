@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
-
 st.markdown(
     """
     <style>
@@ -13,7 +11,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 
 PAGES = {
     "Home": "Home.py",

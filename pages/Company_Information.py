@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-
 st.markdown(
     """
     <style>
@@ -14,7 +13,6 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-
 
 PAGES = {
     "Home": "Home.py",
