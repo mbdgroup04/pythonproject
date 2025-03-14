@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import numpy as np
 import pages.functions.PySimFin as psf
 from pages.functions.Exceptions import InvalidTicker
@@ -93,8 +94,7 @@ if st.button("PREDICT"):
     price_predict()
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"### 📊 Historical + Predicted Closing Price for {comp_name}")
-    combined_df=pd.concat([stock_df,real_data])
-    fig=px.line(combined_df, x="Date", y="Close", title="")
+    fig.add_trace(go.Scatter(x=real_data["Date"],y=real_data["Close"],mode="lines",name="Real-Time API Data",line=dict(color="red")))
     fig.add_scatter(x=[end_date],y=[prediction],mode="markers",marker=dict(color="red", size=10, symbol="star"),name="Predicted Price")
     st.plotly_chart(fig, use_container_width=True)
 
