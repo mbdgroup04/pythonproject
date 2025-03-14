@@ -71,8 +71,8 @@ class PySimFin:
             sum_gross+=k
           revenue=round(sum_rev,2)
           gross_profit=round(sum_gross,2)
+        fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']  
         state_list=[fiscal_year,revenue,gross_profit]
-        fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
         return state_list
       else:
         state_list=[0,0,0]
