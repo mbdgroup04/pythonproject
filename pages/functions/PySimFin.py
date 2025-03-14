@@ -15,7 +15,7 @@ logging.basicConfig(
 
 class PySimFin:
   def __init__(self):
-    load_dotenv("variables.env")
+    load_dotenv("functions/api.env")
     self.__api_key=os.getenv('TMDB_API_KEY')
     self.__headers={'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
