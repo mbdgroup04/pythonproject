@@ -94,4 +94,4 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown(f"<p style='font-size:40px; text-align:left; font-weight:bold; '>Next day's stock price for {selected_comp_name}:</p>", unsafe_allow_html=True)
 col1,col2,col3=st.columns(3)
 with col2:
-    st.markdown(f"<p style='font-size:38px; text-align:left; '>{prediction} $</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:38px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
