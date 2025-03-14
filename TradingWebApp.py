@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pages.Company_Info as company_info 
+import pages.Company_Information as company_info 
 import pages.Predictions as predictions  
 import pages.Strategy as strategy  
 import pages.Meet_the_Team as Meet_the_Team
