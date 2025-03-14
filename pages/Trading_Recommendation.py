@@ -7,6 +7,22 @@ from pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
+
+
+PAGES = {
+    "Home": None,
+    "Company Information": "pages/Company_Information.py",
+    "Trading Recommendation": "pages/Trading_Recommendation.py",
+    "Meet The Team": "pages/Meet_the_Team.py",
+}
+
+for page_name, file_path in PAGES.items():
+    if file_path:
+        st.sidebar.page_link(file_path, label=page_name)
+    else:
+        st.sidebar.write(f"### {page_name}")
+
+
 def load_data():
     try:
         stock_data = pd.read_csv("data/shareprices.csv")

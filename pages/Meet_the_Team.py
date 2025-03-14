@@ -1,5 +1,21 @@
 import streamlit as st
 
+
+
+PAGES = {
+    "Home": None,
+    "Company Information": "pages/Company_Information.py",
+    "Trading Recommendation": "pages/Trading_Recommendation.py",
+    "Meet The Team": "pages/Meet_the_Team.py",
+}
+
+for page_name, file_path in PAGES.items():
+    if file_path:
+        st.sidebar.page_link(file_path, label=page_name)
+    else:
+        st.sidebar.write(f"### {page_name}")
+
+
 def display_team_member(name, role, bio, fun_fact, image_path):
     col1, col2 = st.columns([1, 3])  # Create two columns for layout
 

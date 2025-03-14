@@ -29,11 +29,9 @@ PAGES = {
     "Meet The Team": "pages/Meet_the_Team.py",
 }
 
-# Sidebar Navigation (Custom Order)
-st.sidebar.title("Navigation")
 for page_name, file_path in PAGES.items():
     if file_path:
-        st.sidebar.page_link(file_path, label=page_name)  # Manually order pages
+        st.sidebar.page_link(file_path, label=page_name)
     else:
         st.sidebar.write(f"### {page_name}")
 
