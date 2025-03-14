@@ -49,9 +49,9 @@ def display(companies):
         st.write(f"**Number of Employees:** {int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))
         st.write(f"**Market:** {company_info.iloc[0]['Market']}")
         st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
-        st.write(f"**Fical Year selected:** {state_data[0]}")
-        st.write(f"**Revenue:** {state_data[1],.2}")
-        st.write(f"**Gross Profit:** {state_data[2],.2}")
+        st.write(f"**Fical Year selected:** {state_data[0]:,.2f}")
+        st.write(f"**Revenue:** {state_data[1]:,.2f}")
+        st.write(f"**Gross Profit:** {state_data[2]:,.2f}")
     else:
         st.warning("⚠️ No company data available.")
 
