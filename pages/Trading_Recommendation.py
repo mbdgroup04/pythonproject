@@ -7,10 +7,8 @@ from pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
-
-
 PAGES = {
-    "Home": None,
+    "Home": "Home.py",
     "Company Information": "pages/Company_Information.py",
     "Trading Recommendation": "pages/Trading_Recommendation.py",
     "Meet The Team": "pages/Meet_the_Team.py",
@@ -21,7 +19,6 @@ for page_name, file_path in PAGES.items():
         st.sidebar.page_link(file_path, label=page_name)
     else:
         st.sidebar.write(f"### {page_name}")
-
 
 def load_data():
     try:

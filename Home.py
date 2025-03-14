@@ -1,8 +1,18 @@
 import streamlit as st
 import pandas as pd
-import pages.Company_Information
-import pages.Trading_Recommendation
-import pages.Meet_the_Team
+
+PAGES = {
+    "Home": "Home.py",
+    "Company Information": "pages/Company_Information.py",
+    "Trading Recommendation": "pages/Trading_Recommendation.py",
+    "Meet The Team": "pages/Meet_the_Team.py",
+}
+
+for page_name, file_path in PAGES.items():
+    if file_path:
+        st.sidebar.page_link(file_path, label=page_name)
+    else:
+        st.sidebar.write(f"### {page_name}")
 
 def load_data():
     companies = pd.read_csv("data/companies.csv")  
@@ -19,22 +29,6 @@ def display_team_member(name, role, bio, fun_fact, image_path):
         st.markdown(f"**Role:** {role}")
         st.write(bio)
         st.markdown(f"🎉 **Fun Fact:** {fun_fact}")
-
-
-
-PAGES = {
-    "Home": "Home.py",
-    "Company Information": "pages/Company_Information.py",
-    "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Meet The Team": "pages/Meet_the_Team.py",
-}
-
-for page_name, file_path in PAGES.items():
-    if file_path:
-        st.sidebar.page_link(file_path, label=page_name)
-    else:
-        st.sidebar.write(f"### {page_name}")
-
 
 st.title("📈 Automated Daily Trading System")
 
