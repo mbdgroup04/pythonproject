@@ -1,3 +1,4 @@
+import pandas as pd
 import requests
 import logging
 from datetime import datetime, timedelta
@@ -43,7 +44,6 @@ class PySimFin:
   
   
   def get_financial_statements(self,ticker:str,year:str):
-    logging.info('API Key and authenticator set up correctly.')
     self.__url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear={year}%2C2025&start={year}-01-01&end={str(int(year)+1)}-01-01'
     response=requests.get(self.__url,headers=self.__headers)
     if response.status_code == 200:
@@ -79,3 +79,16 @@ class PySimFin:
         return state_list
     else:
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
+
+  def get_dataframe(self,ticker:str):
+    self.__url=f'https://backend.simfin.com/api/v3/companies/prices/verbose?ticker={ticker}&start=2024-03-05&end={datetime.today().strftime('%Y-%m-%d')-timedelta(days=1)}'
+    response=requests.get(self.__url,headers=self.__headers)
+    if response.status_code == 200:
+      data = response.json()
+      data=data[0]['data']
+      data=data[['Date','Last Closing Price']]
+      data['Date']=pd.to_datetime(data['Date'])
+      data=data.rename(columns={'Last Closing Price':'Close'})
+      return data
+    else:
+      logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
