@@ -44,11 +44,11 @@ def display(companies):
     selected_year=st.selectbox("Please select a fiscal year:",year_list)
     state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
     if state_data[1]!=0:
-        revenue=f"${state_data[1]:,}"
+        revenue=f"${state_data[1]//1000000:,}"
     else:
         revenue="NaN"
     if state_data[2]!=0:
-        gross_profit=f"${state_data[2]:,}"
+        gross_profit=f"${state_data[2]//1000000:,}"
     else:
         gross_profit="NaN"
 
@@ -63,8 +63,8 @@ def display(companies):
         colc,cold,cole,colf=st.columns(4)
         colc.metric(f"**Number of Employees**", f"{int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))    
         cold.metric(f"**Fical Year selected**", f"{selected_year}")
-        cole.metric(f"**Revenue**", f"{revenue}")
-        colf.metric(f"**Gross Profit**", f"{gross_profit}")
+        cole.metric(f"**Revenue (in millions)**", f"{revenue}")
+        colf.metric(f"**Gross Profit (in millions)**", f"{gross_profit}")
     else:
         st.warning("⚠️ No company data available.")
 
