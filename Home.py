@@ -28,7 +28,7 @@ col1,col2,col3=st.columns(3)
 with col2:
     st.image("data/logo.jpg", width=200)
 
-st.markdown(f'<p style="font-size:40px; text-align:center; ">Welcome to <b>TradeVision AI</b> -- Your Intelligent Market Companion. You are now able to harness the power of AI for smarter trading decisions</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:40px; text-align:left; ">Welcome to <b>TradeVision AI</b> -- Your Intelligent Market Companion. You are now able to harness the power of AI for smarter trading decisions</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; "><b>TradeVision AI</b> is a cutting-edge, AI-driven market prediction platform designed to give traders a competitive edge. By leveraging advanced machine learning models and real-time financial data, we empower you with actionable insights for informed investment decisions.</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; font-weight:bold;">But why TradeVision AI?</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; "></p>', unsafe_allow_html=True)
