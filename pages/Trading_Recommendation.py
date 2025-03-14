@@ -46,38 +46,6 @@ selected_ticker = st.selectbox("📌 Choose a stock ticker:", stock_data["Ticker
 
 stock_df = stock_data[stock_data["Ticker"] == selected_ticker]
 
-st.markdown("### 📊 Historical Stock Price Trend")
-fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
-st.plotly_chart(fig, use_container_width=True)
-
-st.title("🔮 Market Predictions")
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-
-st.markdown("""
-    📌 **This page provides predictive analytics based on historical stock data.**
-    
-    - **View stock price trends**
-    - **Analyze predictive models**
-    - **Compare predicted vs. actual prices**
-""")
-
-if stock_data.empty:
-    st.error("No stock data available. Please upload a valid CSV file.")
-    st.stop()
-
-if "Ticker" not in stock_data.columns:
-    st.error("The dataset does not contain a 'Ticker' column.")
-    st.stop()
-
-st.markdown("### Select a Company for Prediction")
-selected_ticker = st.selectbox("Choose a stock ticker:", stock_data["Ticker"].unique())
-
-stock_df = stock_data[stock_data["Ticker"] == selected_ticker]
-
-if stock_df.empty:
-    st.warning("No stock data available for this company.")
-    st.stop()
-
 min_date = datetime.date(2018, 1, 1)
 max_date = datetime.date.today()
 
@@ -115,3 +83,14 @@ st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br
 col1,col2,col3=st.columns(3)
 with col2:
     st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{round(prediction,2)} $</p>", unsafe_allow_html=True)
+
+st.markdown("### 📊 Historical Stock Price Trend")
+fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
+fig.add_scatter(
+    x=[max_date],  # Add the prediction at the max date (today)
+    y=[prediction],  # Predicted price
+    mode="markers",
+    marker=dict(color="red", size=10, symbol="star"),  # Red star marker
+    name="Predicted Price"
+)
+st.plotly_chart(fig, use_container_width=True)
