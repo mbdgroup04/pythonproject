@@ -45,4 +45,4 @@ st.markdown(f'<p style="font-size:20px; text-align:left; "><b>TradeVision AI</b>
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Select a company to predict the closing price for tomorrow:</p>', unsafe_allow_html=True)
 comp_name = st.selectbox("", ['Apple','Amazon','Google','Microsoft','Tesla'])
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">First fictional closing price for {comp_name}</p>', unsafe_allow_html=True)
-fict1=st.slider("",min_value=0,max_value=500,value=150,step=0.1)
+fict1=st.slider("",min_value=0.0,max_value=500.0,value=150.0,step=0.1)
