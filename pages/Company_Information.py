@@ -45,7 +45,7 @@ def display(companies):
     state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
 
     if not company_info.empty:
-        st.write(f"### {selected_comp_name}")
+        st.markdown(f'<p style="font-size:36px; text-align:center; font-weight:bold; ">{selected_comp_name}</p>', unsafe_allow_html=True)
         cola,colb=st.columns(2)
         with cola:
             st.markdown(f'<p style="font-size:16px; text-align:center; font-weight:bold; ">Market: {company_info.iloc[0]['Market']}</p>', unsafe_allow_html=True)
