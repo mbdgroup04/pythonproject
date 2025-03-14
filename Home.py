@@ -49,4 +49,3 @@ if 'current_page' not in st.session_state:
     st.session_state.current_page = "Home"
 if st.button('I WANT TO PREDICT'):
     st.session_state.current_page = "Trading Recommendation"
-    st.experimental_rerun()
