@@ -79,13 +79,13 @@ elif selected_ticker=='TSLA':
 else:
     raise InvalidTicker('Please insert a valid ticker.')
 
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 col1,col2,col3=st.columns(3)
 with col2:
     st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 
 last_stock_df=stock_df[stock_df["Date"] <= pd.to_datetime(end_date)]
-st.markdown("### 📊 Historical Stock Price Trend")
+st.markdown("### 📊 Historical Stock Price Trend + Predicted Price")
 fig = px.line(last_stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
 fig.add_scatter(
     x=[end_date],
