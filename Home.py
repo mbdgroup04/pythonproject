@@ -28,10 +28,12 @@ col1,col2,col3=st.columns(3)
 with col2:
     st.image("data/logo.jpg", width=200)
 
+st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:35px; text-align:left; ">Welcome to <b>TradeVision AI</b> -- Your Intelligent Market Companion</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:15px; text-align:left; ">You are now able to harness the power of AI for smarter trading decisions</p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; "><b>TradeVision AI</b> is a cutting-edge, AI-driven market prediction platform designed to give traders a competitive edge. By leveraging advanced machine learning models and real-time financial data, we empower you with actionable insights for informed investment decisions.</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:25px; text-align:left; font-weight:bold;">But why TradeVision AI?</p>', unsafe_allow_html=True)
 st.markdown("""
 - **AI-Powered Market Forecasts** – Our predictive models analyze historical trends and real-time market signals to anticipate stock movements with precision.
@@ -40,4 +42,11 @@ st.markdown("""
 - **Smart Trading Signals** – Receive clear Buy/Sell/Hold recommendations based on predictive analytics, simplifying decision-making for all traders.
 - **Cloud-Based & Accessible Anywhere** – Our sleek and interactive web app ensures seamless access from any device, anytime.
 """)
-st.markdown(f'<p style="font-size:25px; text-align:left;"></p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left;font-weight:bold;">Ready to Elevate Your Trading Game?</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left; ">Sign up today and experience the future of AI-driven trading with TradeVision AI!</p>', unsafe_allow_html=True)
+if 'current_page' not in st.session_state:
+    st.session_state.current_page = "Home"
+if st.button('I WANT TO PREDICT'):
+    st.session_state.current_page = "Trading Recommendation"
+    st.experimental_rerun()
