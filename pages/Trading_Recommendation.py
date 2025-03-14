@@ -67,30 +67,30 @@ model_MSFT=pickle.load(open('models/picklemodel_MSFT.pkl','rb'))
 model_TSLA=pickle.load(open('models/picklemodel_TSLA.pkl','rb'))
 
 if selected_ticker=='AAPL':
-    prediction=model_AAPL.predict(latest_data)[0]
+    prediction=round(model_AAPL.predict(latest_data)[0],2)
 elif selected_ticker=='AMZN':
-    prediction=model_AMZN.predict(latest_data)[0]
+    prediction=round(model_AMZN.predict(latest_data)[0],2)
 elif selected_ticker=='GOOG':
-    prediction=model_GOOG.predict(latest_data)[0]
+    prediction=round(model_GOOG.predict(latest_data)[0],2)
 elif selected_ticker=='MSFT':
-    prediction=model_MSFT.predict(latest_data)[0]
+    prediction=round(model_MSFT.predict(latest_data)[0],2)
 elif selected_ticker=='TSLA':
-    prediction=model_TSLA.predict(latest_data)[0]
+    prediction=round(model_TSLA.predict(latest_data)[0],2)
 else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 col1,col2,col3=st.columns(3)
 with col2:
-    st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{round(prediction,2)} $</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
 
 st.markdown("### 📊 Historical Stock Price Trend")
 fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
 fig.add_scatter(
-    x=[max_date],  # Add the prediction at the max date (today)
-    y=[prediction],  # Predicted price
+    x=[end_date],
+    y=[prediction],
     mode="markers",
-    marker=dict(color="red", size=10, symbol="star"),  # Red star marker
+    marker=dict(color="red", size=10, symbol="star"),
     name="Predicted Price"
 )
 st.plotly_chart(fig, use_container_width=True)
