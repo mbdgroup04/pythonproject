@@ -40,7 +40,7 @@ def display(companies):
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]
     selected_ticker=stock_df.iloc[0]["Ticker"]
-    year_list=['2020','2021','2022','2023','2024']
+    year_list=['2018','2019','2020','2021','2022','2023','2024']
     selected_year=st.selectbox("Please select a fiscal year:",year_list)
     state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
     if state_data[1]!=0:
