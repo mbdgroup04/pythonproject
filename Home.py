@@ -24,5 +24,6 @@ for page_name, file_path in PAGES.items():
         st.sidebar.page_link(file_path, label=page_name)
     else:
         st.sidebar.write(f"### {page_name}")
-
-st.image("data/logo.jpg", width=200)
+col1,col2,col3=st.columns(3)
+with col2:
+    st.image("data/logo.jpg", width=400)
