@@ -43,7 +43,17 @@ def load_data():
 stock_data = load_data()
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Select a company to predict the closing price for tomorrow:</p>', unsafe_allow_html=True)
-selected_comp_name = st.selectbox("", stock_data["Company Name"].unique())
+comp_name = st.selectbox("", ['Apple','Amazon','Google','Microsoft','Tesla'])
+if comp_name=='Apple':
+    selected_comp_name='APPLE INC'
+elif comp_name=='Amazon':
+    selected_comp_name='AMAZON COM INC'
+elif comp_name=='Google':
+    selected_comp_name='Alphabet (Google)'
+elif comp_name=='Microsoft':
+    selected_comp_name='MICROSOFT CORP'
+else:
+    selected_comp_name='Tesla'
 
 stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
 selected_ticker=stock_df.iloc[0]["Ticker"]
@@ -76,7 +86,7 @@ else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 def price_predict():
-    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's predicted closing price for {selected_comp_name}:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's predicted closing price for {comp_name}:</p>", unsafe_allow_html=True)
 
     col1,col2,col3=st.columns(3)
     with col2:
@@ -85,7 +95,7 @@ def price_predict():
 if st.button("PREDICT"):
     price_predict()
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"### 📊 Historical + Predicted Closing Price for {selected_comp_name}")
+    st.markdown(f"### 📊 Historical + Predicted Closing Price for {comp_name}")
     fig.add_scatter(x=[end_date],y=[prediction],mode="markers",marker=dict(color="red", size=10, symbol="star"),name="Predicted Price")
     st.plotly_chart(fig, use_container_width=True)
 
