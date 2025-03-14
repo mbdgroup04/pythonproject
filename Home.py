@@ -21,6 +21,24 @@ def display_team_member(name, role, bio, fun_fact, image_path):
         st.write(bio)
         st.markdown(f"🎉 **Fun Fact:** {fun_fact}")
 
+
+
+PAGES = {
+    "Home": None,
+    "Company Information": "pages/Company_Information.py",
+    "Trading Recommendation": "pages/Trading_Recommendation.py",
+    "Meet The Team": "pages/Meet_the_Team.py",
+}
+
+# Sidebar Navigation (Custom Order)
+st.sidebar.title("Navigation")
+for page_name, file_path in PAGES.items():
+    if file_path:
+        st.sidebar.page_link(file_path, label=page_name)  # Manually order pages
+    else:
+        st.sidebar.write(f"### {page_name}")
+
+
 st.title("📈 Automated Daily Trading System")
 
 st.markdown("## Overview")
