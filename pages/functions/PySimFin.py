@@ -55,6 +55,9 @@ class PySimFin:
           if i['Fiscal Period'] in ["Q1","Q2","Q3","Q4"]:
             rev_list.append(i['Revenue'])
             gross_list.append(i['Gross Profit'])
+          else:
+            rev_list=[]
+            gross_list=[]
         fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
         sum_rev=0
         sum_gross=0
