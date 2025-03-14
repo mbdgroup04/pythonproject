@@ -91,7 +91,7 @@ fig.add_scatter(
 )
 st.plotly_chart(fig, use_container_width=True)
 
-st.title(f"Next day's stock price for {selected_comp_name}:")
+st.markdown(f"<p style='font-size:30px; text-align:left; font-weight:bold; '>Next day's stock price for {selected_comp_name}</p>", unsafe_allow_html=True)
 col1,col2,col3=st.columns(3)
 with col2:
     st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
