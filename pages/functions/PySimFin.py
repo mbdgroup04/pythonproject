@@ -19,9 +19,9 @@ class PySimFin:
     logging.info('API Key and authenticator set up correctly.')
   def get_share_prices(self,ticker:str,start:str,end:str):
     logging.info('Checking the initial and final dates to prevent errors in the web.')
-    if start>end or start<'2018-03-05':
+    if start>end or start<='2018-03-05':
       raise InvalidInitialDate('Cannot input initial date greater than final date nor before 2018-03-05')
-    elif end<start or end>'2025-03-04':
+    elif end<start or end>=str(datetime.date.today()):
       raise InvalidFinalDate('Cannot input final date lower than initial date nor after 2025-03-04')
     else:
       new_start=str(datetime.strptime(start,'%Y-%m-%d').date()-timedelta(days=10))
