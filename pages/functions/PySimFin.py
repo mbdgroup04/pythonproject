@@ -62,8 +62,8 @@ class PySimFin:
           sum_rev+=j
         for k in gross_list:
           sum_gross+=k
-        revenue=round(sum_rev/len(rev_list),2)
-        gross_profit=round(sum_gross/len(gross_list),2)
+        revenue=round(sum_rev,2)
+        gross_profit=round(sum_gross,2)
         state_list=[fiscal_year,revenue,gross_profit]
         return state_list
       else:
