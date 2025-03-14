@@ -29,4 +29,4 @@ with col2:
     st.image("data/logo.jpg", width=200)
 
 st.markdown(f'<p style="font-size:40px; text-align:center; font-weight:bold; ">TradeVision AI</p>', unsafe_allow_html=True)
-st.markdown(f'<p style="font-size:20px; text-align:left; ">Welcome to your personal **intelligent**</p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:20px; text-align:left; ">Welcome to your personal <b intelligent /b></p>', unsafe_allow_html=True)
