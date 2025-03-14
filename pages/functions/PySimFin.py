@@ -51,23 +51,28 @@ class PySimFin:
       if data!=[] and data[0]['statements']!=[]:
         rev_list=[]
         gross_list=[]
-        for i in data[0]['statements'][0]['data']:
-          if i['Fiscal Period'] in ["Q1","Q2","Q3","Q4"]:
-            rev_list.append(i['Revenue'])
-            gross_list.append(i['Gross Profit'])
-          else:
-            rev_list=[]
-            gross_list=[]
-        fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
-        sum_rev=0
-        sum_gross=0
-        for j in rev_list:
-          sum_rev+=j
-        for k in gross_list:
-          sum_gross+=k
-        revenue=round(sum_rev,2)
-        gross_profit=round(sum_gross,2)
+        if year=='2025':
+          if data[0]['statements'][0]['data']['Fiscal Period']=='Q1':
+            revenue=data[0]['statements'][0]['data']['Revenue']
+            gross_profit=data[0]['statements'][0]['data']['Gross Profit']
+        else:
+          for i in data[0]['statements'][0]['data']:
+            if i['Fiscal Period'] in ["Q1","Q2","Q3","Q4"]:
+              rev_list.append(i['Revenue'])
+              gross_list.append(i['Gross Profit'])
+            else:
+              rev_list=[]
+              gross_list=[]
+          sum_rev=0
+          sum_gross=0
+          for j in rev_list:
+            sum_rev+=j
+          for k in gross_list:
+            sum_gross+=k
+          revenue=round(sum_rev,2)
+          gross_profit=round(sum_gross,2)
         state_list=[fiscal_year,revenue,gross_profit]
+        fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
         return state_list
       else:
         state_list=[0,0,0]
