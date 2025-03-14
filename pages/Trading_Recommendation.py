@@ -23,8 +23,8 @@ PAGES = {
     "Home": "Home.py",
     "Company Information": "pages/Company_Information.py",
     "Trading Recommendation": None,
-    "Our Team": "pages/Our_Team.py",
-    "Personal Testing": "pages/Personal_Testing.py"
+    "Personal Testing": "pages/Personal_Testing.py",
+    "Our Team": "pages/Our_Team.py"
 }
 
 for page_name, file_path in PAGES.items():
