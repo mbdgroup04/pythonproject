@@ -48,7 +48,7 @@ class PySimFin:
     response=requests.get(self.__url,headers=self.__headers)
     if response.status_code == 200:
       data = response.json()
-      if data!=[]:
+      if data!=[] and data[0]['statements']!=[]:
         fiscal_year=data[0]['statements'][0]['data'][0]['Fiscal Year']
         revenue=data[0]['statements'][0]['data'][0]['Revenue']
         gross_profit=data[0]['statements'][0]['data'][0]['Gross Profit']
