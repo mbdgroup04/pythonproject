@@ -30,6 +30,12 @@ for page_name, file_path in PAGES.items():
     else:
         st.sidebar.write(f"### {page_name}")
 
+def load_data():
+    companies = pd.read_csv("data/companies.csv")  
+    return companies
+
+companies = load_data()
+
 def display(companies):
     if companies.empty:
         st.error("⚠️ No company data available.")
