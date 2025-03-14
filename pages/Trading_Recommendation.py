@@ -94,7 +94,7 @@ if input_data!=[0,0,0]:
     else:
         raise InvalidTicker('Please insert a valid ticker.')
 else:
-    prediction='NaN'
+    prediction=0
 
 def price_predict():
     last_close=input_data[-1]
