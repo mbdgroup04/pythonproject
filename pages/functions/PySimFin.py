@@ -42,8 +42,9 @@ class PySimFin:
           last_list=[0,0,0]
           return last_list
       else:
+        new_list=[0,0,0]
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
-  
+        return new_list
   
   def get_financial_statements(self,ticker:str,year:str):
     self.__url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear={year}%2C2025&start={year}-01-01&end={str(int(year)+1)}-01-01'
