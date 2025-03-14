@@ -47,4 +47,4 @@ st.markdown(f'<p style="font-size:25px; text-align:left;font-weight:bold;">Ready
 st.markdown(f'<p style="font-size:25px; text-align:left; ">Sign up today and experience the future of AI-driven trading with TradeVision AI!</p>', unsafe_allow_html=True)
 website_url = "https://pythonproject-fsaanv6ra5zqqx7r2wch4a.streamlit.app/Trading_Recommendation"
 if st.button('I WANT TO PREDICT'):
-    st.page_link("pages/Trading_Recommendation.py",label="Trading Recommendation")
+    st.markdown(f'<meta http-equiv="refresh" content="0; URL={website_url}">', unsafe_allow_html=True)
