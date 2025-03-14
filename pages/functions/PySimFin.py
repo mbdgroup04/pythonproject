@@ -44,7 +44,7 @@ class PySimFin:
   
   def get_financial_statements(self,ticker:str,year:str):
     logging.info('API Key and authenticator set up correctly.')
-    self.__url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear=2018%2C2025&start={year}-01-01&end={str(int(year)+1)}-01-01'
+    self.__url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear={year}%2C2025&start={year}-01-01&end={str(int(year)+1)}-01-01'
     response=requests.get(self.__url,headers=self.__headers)
     if response.status_code == 200:
       data = response.json()
