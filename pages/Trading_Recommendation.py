@@ -86,7 +86,7 @@ else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 def price_predict():
-    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's predicted closing price for {comp_name} is: ${prediction}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; '>Today's predicted closing price for {comp_name} is: ${prediction}</p>", unsafe_allow_html=True)
 
 if st.button("PREDICT"):
     price_predict()
