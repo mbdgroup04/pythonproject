@@ -53,7 +53,7 @@ st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br
 fig = px.line(stock_df, x="Date", y="Close", title="")
 
 def predict_price():
-    start_date='2018-01-01'
+    start_date='2018-03-05'
     end_date=str(datetime.datetime.today())
     input_data=psf.PySimFin().get_share_prices(selected_ticker,start_date,end_date)
     latest_data=np.array([input_data],dtype=object)
