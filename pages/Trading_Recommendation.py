@@ -94,13 +94,13 @@ else:
 
 def price_predict():
     last_close=input_data[-1]
-    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's predicted closing price for {comp_name} is: ${prediction}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; '><b>Today's predicted closing price for {comp_name} is:</b> ${prediction}</p>", unsafe_allow_html=True)
     if prediction<last_close*1.101:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advises you to buy, since today's closing price is predicted to be more than 10% higher than yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advices you to <b>BUY</b>, since today's closing price is predicted to be more than 10% higher than yesterday's</p>", unsafe_allow_html=True)
     elif last_close*0.9501<=prediction<=last_close*1.101:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advises you to hold, since today's closing price is predicted to be around the same value as yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advices you to <b>HOLD</b>, since today's closing price is predicted to be around the same value as yesterday's</p>", unsafe_allow_html=True)
     else:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advises you to sell, since today's closing price is predicted to be more than 5% lower yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>Your dearest companion TradeVision AI advices you to <b>SELL</b>, since today's closing price is predicted to be more than 5% lower yesterday's</p>", unsafe_allow_html=True)
 
 if st.button("PREDICT"):
     price_predict()
