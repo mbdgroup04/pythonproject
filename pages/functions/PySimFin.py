@@ -46,7 +46,7 @@ class PySimFin:
     self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
     self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
-    self.url=f'https://backend.simfin.com/api/v3/companies/financials/statements/verbose?ticker={ticker}&statements=PL&fyear=2021%2C2023&start={str(int(year)-1)}-01-01&end={year}-01-01'
+    self.url=f'https://backend.simfin.com/api/v3/companies/statements/verbose?ticker={ticker}&statements=PL&fyear=2021%2C2023&start={str(int(year)-1)}-01-01&end={year}-01-01'
     response=requests.get(self.url,headers=self.__headers)
     if response.status_code == 200:
       data = response.json()
