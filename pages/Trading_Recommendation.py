@@ -84,8 +84,9 @@ col1,col2,col3=st.columns(3)
 with col2:
     st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
 
+last_stock_df=stock_df[stock_df["Date"] <= pd.to_datetime(end_date)]
 st.markdown("### 📊 Historical Stock Price Trend")
-fig = px.line(stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
+fig = px.line(last_stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
 fig.add_scatter(
     x=[end_date],
     y=[prediction],
