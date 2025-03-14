@@ -41,7 +41,6 @@ with col2:
     st.image("data/logo.jpg", width=200)
 st.markdown(f'<p style="font-size:40px; text-align:center; font-weight:bold; ">Our Team</p>', unsafe_allow_html=True)
 
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown("Our team brings together expertise in machine learning, financial analytics, business strategy, and web development.")
 
 team_members = [
