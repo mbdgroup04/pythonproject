@@ -101,5 +101,5 @@ if st.button("PREDICT"):
 
 else:
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"### 📊 Historical Closing Prices for {selected_comp_name}")
+    st.markdown(f"### 📊 Historical Closing Prices for {comp_name}")
     st.plotly_chart(fig, use_container_width=True)
