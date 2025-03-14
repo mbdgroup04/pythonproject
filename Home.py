@@ -4,7 +4,6 @@ import pages.Company_Information
 import pages.Trading_Recommendation
 import pages.Meet_the_Team
 
-@st.cache_data
 def load_data():
     companies = pd.read_csv("data/companies.csv")  
     return companies

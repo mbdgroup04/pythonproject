@@ -3,7 +3,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-@st.cache_data
 def display(companies):
     if companies.empty:
         st.error("⚠️ No company data available.")

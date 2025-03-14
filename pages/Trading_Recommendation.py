@@ -7,7 +7,6 @@ from pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
-@st.cache_data
 def load_data():
     try:
         stock_data = pd.read_csv("data/shareprices.csv")

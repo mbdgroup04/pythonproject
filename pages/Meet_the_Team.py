@@ -1,6 +1,5 @@
 import streamlit as st
 
-# Function to display a team member
 def display_team_member(name, role, bio, fun_fact, image_path):
     col1, col2 = st.columns([1, 3])  # Create two columns for layout
 
@@ -13,11 +12,9 @@ def display_team_member(name, role, bio, fun_fact, image_path):
         st.write(bio)
         st.markdown(f"💡 *{fun_fact}*")
 
-# Meet the Team Section
 st.markdown("## 👥 Meet the Team")
 st.markdown("Our team brings together expertise in machine learning, financial analytics, business strategy, and web development.")
 
-# Team Members
 team_members = [
     ("Leonardo V. Kietzell", "🚀 Lead Business Strategist", 
         "🇩🇪 Leonardo is from Germany and brings **years of consulting and business strategy insights** to the project. 📊 His expertise in **decision-making & market analysis** helped shape the vision of our trading system.",
@@ -40,6 +37,5 @@ team_members = [
         "🌍 He speaks **four languages fluently**! 🗣️🌎", "data/santiago.jpeg")
 ]
 
-# ✅ Display each team member
 for member in team_members:
     display_team_member(*member)
