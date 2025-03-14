@@ -15,8 +15,9 @@ logging.basicConfig(
 
 class PySimFin:
   def __init__(self):
-    self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
-    self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
+    load_dotenv("variables.env")
+    self.__api_key=os.getenv('TMDB_API_KEY')
+    self.__headers={'accept':'application/json','Authorization': f'{self.__api_key}'}
     logging.info('API Key and authenticator set up correctly.')
   def get_share_prices(self,ticker:str,start:str,end:str):
     logging.info('Checking the initial and final dates to prevent errors in the web.')
