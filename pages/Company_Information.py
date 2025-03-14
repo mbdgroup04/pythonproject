@@ -33,12 +33,12 @@ def display(companies):
         return
     df3=pd.read_csv("data/shareprices.csv")
 
-    selected_ticker = st.selectbox("Select a Company Ticker", companies["Ticker"].dropna().unique())
-    company_info = companies[companies["Ticker"] == selected_ticker]
-    stock_df=df3[df3["Ticker"]==selected_ticker]
+    selected_comp_name = st.selectbox("Please select a Company:", companies["Company Name"].unique())
+    company_info = companies[companies["Company Name"] == selected_comp_name]
+    stock_df=df3[df3["Company Name"]==selected_comp_name]
 
     if not company_info.empty:
-        st.write(f"### {company_info.iloc[0]['Company Name']}")
+        st.write(f"### {selected_comp_name}")
         st.write(f"**Industry ID:** {company_info.iloc[0]['IndustryId']}")
         st.write(f"**Number of Employees:** {int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))
         st.write(f"**Market:** {company_info.iloc[0]['Market']}")
@@ -61,7 +61,7 @@ def display(companies):
     st.metric(label="", value=f"${latest_data['Close']:.2f}", delta=change_value)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>{selected_ticker}'s metrics in average:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:20px; text-align:left; font-weight:bold; '>{selected_comp_name}'s metrics in average:</p>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("📈 Open", f"${latest_data['Open']:.2f}")
     col2.metric("📉 Low", f"${latest_data['Low']:.2f}")
@@ -77,17 +77,17 @@ def display(companies):
             high=stock_df["High"],
             low=stock_df["Low"],
             close=stock_df["Close"],
-            name=selected_ticker
+            name=selected_comp_name
         )
     ])
-    fig_candle.update_layout(title=f"{selected_ticker}", template="plotly_dark",xaxis_title="Date",yaxis_title="Close")
+    fig_candle.update_layout(title=f"{selected_comp_name}", template="plotly_dark",xaxis_title="Date",yaxis_title="Close")
     st.plotly_chart(fig_candle, use_container_width=True)
 
     st.markdown("### 📊 Compare Stocks")
-    tickers_selected = st.multiselect("Select multiple stocks:", df3["Ticker"].unique(), default=[selected_ticker])
+    comps_selected = st.multiselect("Please select multiple companies:", df3["Company Name"].unique(), default=[selected_comp_name])
     
-    if tickers_selected:
-        compare_df = df3[df3["Ticker"].isin(tickers_selected)]
+    if comps_selected:
+        compare_df = df3[df3["Company Name"].isin(comps_selected)]
         fig_compare = px.line(compare_df, x="Date", y="Close", color="Ticker", title="Stock Comparison")
         st.plotly_chart(fig_compare, use_container_width=True)
 

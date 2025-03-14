@@ -42,9 +42,10 @@ def load_data():
 
 stock_data = load_data()
 
-selected_ticker = st.selectbox("📌 Choose a stock ticker:", stock_data["Ticker"].unique())
+selected_comp_name = st.selectbox("Please select a company:", stock_data["Company Name"].unique())
 
-stock_df = stock_data[stock_data["Ticker"] == selected_ticker]
+stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
+selected_ticker=stock_df.iloc[0]["Ticker"]
 
 min_date = datetime.date(2018, 1, 1)
 max_date = datetime.date.today()
@@ -80,7 +81,7 @@ else:
 
 last_stock_df=stock_df[stock_df["Date"] <= pd.to_datetime(end_date)]
 st.markdown("### 📊 Historical Stock Price Trend + Predicted Price")
-fig = px.line(last_stock_df, x="Date", y="Close", title=f"{selected_ticker} Stock Price Over Time")
+fig = px.line(last_stock_df, x="Date", y="Close", title=f"{selected_comp_name}'s Stock Price Over Time")
 fig.add_scatter(
     x=[end_date],
     y=[prediction],
@@ -90,8 +91,7 @@ fig.add_scatter(
 )
 st.plotly_chart(fig, use_container_width=True)
 
-st.title("Next day's price:")
+st.title(f"Next day's stock price for {selected_comp_name}:")
 col1,col2,col3=st.columns(3)
 with col2:
     st.markdown(f"<p style='font-size:60px; text-align:left; font-weight:bold; '>{prediction} $</p>", unsafe_allow_html=True)
-st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
