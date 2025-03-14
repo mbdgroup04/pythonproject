@@ -80,18 +80,21 @@ model_GOOG=pickle.load(open('models/picklemodel_GOOG.pkl','rb'))
 model_MSFT=pickle.load(open('models/picklemodel_MSFT.pkl','rb'))
 model_TSLA=pickle.load(open('models/picklemodel_TSLA.pkl','rb'))
 
-if selected_ticker=='AAPL':
-    prediction=round(model_AAPL.predict(latest_data)[0],2)
-elif selected_ticker=='AMZN':
-    prediction=round(model_AMZN.predict(latest_data)[0],2)
-elif selected_ticker=='GOOG':
-    prediction=round(model_GOOG.predict(latest_data)[0],2)
-elif selected_ticker=='MSFT':
-    prediction=round(model_MSFT.predict(latest_data)[0],2)
-elif selected_ticker=='TSLA':
-    prediction=round(model_TSLA.predict(latest_data)[0],2)
+if input_data!=[0,0,0]:
+    if selected_ticker=='AAPL':
+        prediction=round(model_AAPL.predict(latest_data)[0],2)
+    elif selected_ticker=='AMZN':
+        prediction=round(model_AMZN.predict(latest_data)[0],2)
+    elif selected_ticker=='GOOG':
+        prediction=round(model_GOOG.predict(latest_data)[0],2)
+    elif selected_ticker=='MSFT':
+        prediction=round(model_MSFT.predict(latest_data)[0],2)
+    elif selected_ticker=='TSLA':
+        prediction=round(model_TSLA.predict(latest_data)[0],2)
+    else:
+        raise InvalidTicker('Please insert a valid ticker.')
 else:
-    raise InvalidTicker('Please insert a valid ticker.')
+    prediction='NaN'
 
 def price_predict():
     last_close=input_data[-1]

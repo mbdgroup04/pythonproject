@@ -39,7 +39,8 @@ class PySimFin:
           last_list=data_list[-3:]
           return last_list
         else:
-          return f'No data available between {start} and {end}.'
+          last_list=[0,0,0]
+          return last_list
       else:
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
   
