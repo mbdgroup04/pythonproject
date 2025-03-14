@@ -3,9 +3,9 @@ import pandas as pd
 
 PAGES = {
     "Home": "Home.py",
-    "Company Information": "pages/Company_Information.py",
-    "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Meet The Team": "pages/Meet_the_Team.py",
+    "Company Information": "my_pages/Company_Information.py",
+    "Trading Recommendation": "my_pages/Trading_Recommendation.py",
+    "Meet The Team": "my_pages/Meet_the_Team.py",
 }
 
 for page_name, file_path in PAGES.items():

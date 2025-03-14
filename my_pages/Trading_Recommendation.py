@@ -2,16 +2,16 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import numpy as np
-import pages.functions.PySimFin as psf
-from pages.functions.Exceptions import InvalidTicker
+import my_pages.functions.PySimFin as psf
+from my_pages.functions.Exceptions import InvalidTicker
 import datetime
 import pickle
 
 PAGES = {
     "Home": "Home.py",
-    "Company Information": "pages/Company_Information.py",
-    "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Meet The Team": "pages/Meet_the_Team.py",
+    "Company Information": "my_pages/Company_Information.py",
+    "Trading Recommendation": "my_pages/Trading_Recommendation.py",
+    "Meet The Team": "my_pages/Meet_the_Team.py",
 }
 
 for page_name, file_path in PAGES.items():
