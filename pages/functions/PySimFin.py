@@ -81,14 +81,18 @@ class PySimFin:
         logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
 
   def get_dataframe(self,ticker:str):
-    self.__url=f'https://backend.simfin.com/api/v3/companies/prices/verbose?ticker={ticker}&start=2024-03-05&end={datetime.today().strftime('%Y-%m-%d')-timedelta(days=1)}'
-    response=requests.get(self.__url,headers=self.__headers)
-    if response.status_code == 200:
-      data = response.json()
-      data=data[0]['data']
-      data=data[['Date','Last Closing Price']]
-      data['Date']=pd.to_datetime(data['Date'])
-      data=data.rename(columns={'Last Closing Price':'Close'})
-      return data
-    else:
-      logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
+      self.__api_key='1c8ac883-1180-4ed0-93cc-cfff0a297631'
+      self.__headers = {'accept':'application/json','Authorization': f'{self.__api_key}'}
+      self.__url=f'https://backend.simfin.com/api/v3/companies/prices/verbose?ticker={ticker}&start=2024-03-05&end={(datetime.today()-timedelta(days=1)).strftime('%Y-%m-%d')}'
+      response=requests.get(self.__url,headers=self.__headers)
+      if response.status_code == 200:
+        data = response.json()
+        stock_data=data[0]['data']
+        df=pd.DataFrame(stock_data)
+        df=df[['Date','Last Closing Price']]
+        df['Date']=pd.to_datetime(df['Date'])
+        df=df.rename(columns={'Last Closing Price':'Close'})
+        return df
+      else:
+        return f'error'
+        logging.error(f'Unable to retrieve data, error:{response.status_code}. Please check the definition of these mistakes to correct your input data:\n400 - Bad request\n404 - API not found\n429 - Rate limits exceeded, see section Rate Limits.')
