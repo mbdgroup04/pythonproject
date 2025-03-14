@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import pages.functions.PySimFin as psf
+from pages.functions.Exceptions import InvalidTicker
+import datetime
 
 st.markdown(
     """
@@ -33,16 +36,22 @@ def display(companies):
         return
     df3=pd.read_csv("data/shareprices.csv")
 
-    selected_comp_name = st.selectbox("Please select a Company:", companies["Company Name"].unique())
+    selected_comp_name = st.selectbox("Please select a company:", companies["Company Name"].unique())
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]
+    selected_ticker=stock_df.iloc[0]["Ticker"]
+    year_list=['2018','2019','2020','2021','2022','2023','2024']
+    selected_year=st.selectbox("Please select a fiscal year:",year_list)
+    state_data=psf.PySimFin().get_financial_statement(selected_ticker,selected_year)
 
     if not company_info.empty:
         st.write(f"### {selected_comp_name}")
-        st.write(f"**Industry ID:** {company_info.iloc[0]['IndustryId']}")
         st.write(f"**Number of Employees:** {int(company_info.iloc[0]['Number Employees']) if not pd.isna(company_info.iloc[0]['Number Employees']) else 'N/A':,}".replace(",","."))
         st.write(f"**Market:** {company_info.iloc[0]['Market']}")
         st.write(f"**Currency:** {company_info.iloc[0]['Main Currency']}")
+        st.write(f"**Fical Year selected:** {state_data[0]}")
+        st.write(f"**Revenue:** {state_data[1]}")
+        st.write(f"**Gross Profit:** {state_data[2]}")
     else:
         st.warning("⚠️ No company data available.")
 
