@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 st.markdown(
     """
@@ -16,7 +15,7 @@ PAGES = {
     "Home": None,
     "Company Information": "pages/Company_Information.py",
     "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Personal Testing": "pages/Personal_Testing.py",
+    "Personal Strategy": "pages/Personal_Strategy.py",
     "Our Team": "pages/Our_Team.py"
 }
 
@@ -49,3 +48,5 @@ st.markdown(f'<p style="font-size:25px; text-align:left; ">Sign up today and exp
 website_url = "https://pythonproject-fsaanv6ra5zqqx7r2wch4a.streamlit.app/Trading_Recommendation"
 if st.button('I WANT TO PREDICT'):
     st.markdown(f'<meta http-equiv="refresh" content="0; URL={website_url}">', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:25px; text-align:left; "><br></p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:20px; text-align:left; ">You are now using the free version - great start!:rocket: In the premium version, you will unlock multi-day forecasts, deeper financial analysis, and smarter trading strategies to stay ahead of the market!</p>', unsafe_allow_html=True)

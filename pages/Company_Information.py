@@ -3,8 +3,6 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import pages.functions.PySimFin as psf
-from pages.functions.Exceptions import InvalidTicker
-import datetime
 
 st.markdown(
     """
@@ -21,7 +19,7 @@ PAGES = {
     "Home": "Home.py",
     "Company Information": None,
     "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Personal Testing": "pages/Personal_Testing.py",
+    "Personal Strategy": "pages/Personal_Strategy.py",
     "Our Team": "pages/Our_Team.py"
 }
 

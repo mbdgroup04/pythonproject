@@ -15,7 +15,7 @@ PAGES = {
     "Home": "Home.py",
     "Company Information": "pages/Company_Information.py",
     "Trading Recommendation": "pages/Trading_Recommendation.py",
-    "Personal Testing": "pages/Personal_Testing.py",
+    "Personal Strategy": "pages/Personal_Strategy.py",
     "Our Team": None
 }
 
