@@ -108,7 +108,7 @@ else:
     raise InvalidTicker('Please insert a valid ticker.')
 
 def price_predict():
-    last_close=input_data[-1]
+    last_close=real_data[-1]
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; '>Today's predicted closing price for {comp_name} is: <b>${prediction}</b></p>", unsafe_allow_html=True)
     if prediction>last_close*1.0501:
