@@ -75,7 +75,7 @@ def display(companies):
 
     if not company_info.empty:
         st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-        st.markdown(f'<p style="font-size:36px; text-align:center; font-weight:bold; ">{selected_comp_name}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p style="font-size:36px; text-align:center; font-weight:bold; ">{comp_name}</p>', unsafe_allow_html=True)
         cola,colb=st.columns(2)
         with cola:
             st.markdown(f'<p style="font-size:16px; text-align:center; font-weight:bold; ">Market: {company_info.iloc[0]['Market']}</p>', unsafe_allow_html=True)
