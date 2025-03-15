@@ -67,7 +67,8 @@ stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
 selected_ticker=stock_df.iloc[0]["Ticker"]
 
 real_data=psf.PySimFin().get_dataframe(selected_ticker)
-fig = px.line(stock_df, x="Date", y="Close", title="",name="Historical Data")
+fig = px.line(stock_df, x="Date", y="Close", title="")
+fig.update_traces(name="Historical Data")
 
 start_date='2018-03-06'
 end_date=datetime.datetime.today().strftime('%Y-%m-%d')
