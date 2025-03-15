@@ -74,8 +74,7 @@ Ensure you have the following installed:
 ## **Challenges & Future Improvements**
 
 - **Challenges:**
-  - Handling data imbalance (solved using **SMOTE**).
-  - API rate limits (optimized request frequency).
+  - Handling data imbalance.
   - Performance variability across stocks.
 - **Future Enhancements:**
   - Expand stock selection.
@@ -84,11 +83,11 @@ Ensure you have the following installed:
 
 ## **Contributors**
 
-- APOORV KULSHRESTHA
-- MARTIN GUTIERREZ OLARTE
-- MOAYAD SALEM BARAYAN
-- TARA TEYLOUNI
-- MARTIN ROBINSON
+- SANTIAGO BOTERO
+- NITIN JANGIR
+- SANTIAGO RUIZ
+- LEONARDO V. KIETZELL
+- GIZELA THOMAS
 
 
 
