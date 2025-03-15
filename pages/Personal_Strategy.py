@@ -49,6 +49,7 @@ with col2:
 st.markdown(f'<p style="font-size:40px; text-align:center; font-weight:bold; ">Personal Testing</p>', unsafe_allow_html=True)
 st.markdown(f"<p style='font-size:20px; text-align:left; '>Curious about market trends? - Try <b>TradeVision AI's</b> latest interactive prediction tool!</p>", unsafe_allow_html=True)
 st.markdown(f"<p style='font-size:20px; text-align:left; '>Input three hypothetical closing prices, and our model will forecast the next closing price - giving you a glimpse into possible market movements. Test your strategies and see how the market might react.</p>", unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; ">Select a company to predict the closing price for today ({datetime.datetime.today().strftime('%Y-%m-%d')}):</p>', unsafe_allow_html=True)
 
 comp_name = st.selectbox("", ['Apple','Amazon','Google','Microsoft','Tesla'])
