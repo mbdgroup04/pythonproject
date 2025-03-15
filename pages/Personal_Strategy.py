@@ -67,8 +67,9 @@ else:
 stock_df = stock_data[stock_data["Company Name"] == selected_comp_name]
 selected_ticker=stock_df.iloc[0]["Ticker"]
 real_data=psf.PySimFin().get_share_prices(selected_ticker,'2025-01-01',str(datetime.datetime.today().strftime('%Y-%m-%d')))
+all_data=psf.PySimFin().get_dataframe(selected_ticker)
 
-max_fict=stock_df['Close'].max()
+max_fict=all_data['Close'].max()
 mid_fict=round(max_fict/2,2)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f"<p style='font-size:20px; text-align:left; '>Last financial day's closing price for <b>{comp_name}</b> was ${real_data[-1]}</p>", unsafe_allow_html=True)
