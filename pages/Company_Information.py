@@ -46,7 +46,18 @@ def display(companies):
         st.image("data/logo.jpg", width=200)
     st.markdown(f'<p style="font-size:40px; text-align:center; font-weight:bold; ">Company Information</p>', unsafe_allow_html=True)
 
-    selected_comp_name = st.selectbox("Please select a company:", companies["Company Name"].unique())
+    comp_name = st.selectbox("Please select a company:", ['Apple','Amazon','Google','Microsoft','Tesla'])
+    if comp_name=='Apple':
+        selected_comp_name='APPLE INC'
+    elif comp_name=='Amazon':
+        selected_comp_name='AMAZON COM INC'
+    elif comp_name=='Google':
+        selected_comp_name='Alphabet (Google)'
+    elif comp_name=='Microsoft':
+        selected_comp_name='MICROSOFT CORP'
+    else:
+        selected_comp_name='Tesla'
+
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]
     selected_ticker=stock_df.iloc[0]["Ticker"]
