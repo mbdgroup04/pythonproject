@@ -68,6 +68,7 @@ Ensure you have the following installed:
 ├── api.env                       # File to hide the API Key
 ├── app.log                       # File with the saved logs
 ├── requirements.txt              # Dependencies
+├── requirements.txt              # File to hide non-relevant data for the user
 └── README.txt                    # Project documentation
 ```
 
