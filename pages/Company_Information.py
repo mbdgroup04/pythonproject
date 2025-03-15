@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import pages.functions.PySimFin as psf
+import datetime
 
 st.markdown(
     """
@@ -61,6 +62,7 @@ def display(companies):
     company_info = companies[companies["Company Name"] == selected_comp_name]
     stock_df=df3[df3["Company Name"]==selected_comp_name]
     selected_ticker=stock_df.iloc[0]["Ticker"]
+    real_data=psf.PySimFin().get_share_prices(selected_ticker,'2025-01-01',str(datetime.datetime.today().strftime('%Y-%m-%d')))
     year_list=['2018','2019','2020','2021','2022','2023','2024']
     selected_year=st.selectbox("Please select a fiscal year:",year_list)
     state_data=psf.PySimFin().get_financial_statements(selected_ticker,selected_year)
@@ -90,7 +92,7 @@ def display(companies):
     else:
         st.warning("⚠️ No company data available.")
 
-    latest_data = stock_df.iloc[-1]
+    latest_data = latest_data[-1]
 
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's Price:</p>", unsafe_allow_html=True)
