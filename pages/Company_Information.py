@@ -100,7 +100,7 @@ def display(companies):
     st.markdown(f"<p style='font-size:26px; text-align:left; '>${latest_data}</p>", unsafe_allow_html=True)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{selected_comp_name}'s historical metrics in average:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{comp_name}'s historical metrics in average:</p>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("📈 Open", f"${latest_data2['Open']:.2f}")
     col2.metric("📉 Low", f"${latest_data2['Low']:.2f}")
