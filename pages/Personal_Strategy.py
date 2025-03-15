@@ -69,19 +69,17 @@ selected_ticker=stock_df.iloc[0]["Ticker"]
 real_data=psf.PySimFin().get_share_prices(selected_ticker,'2025-01-01',str(datetime.datetime.today().strftime('%Y-%m-%d')))
 all_data=psf.PySimFin().get_dataframe(selected_ticker)
 
-max_fict=all_data['Close'].max()
-mid_fict=round(max_fict/2,2)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f"<p style='font-size:20px; text-align:left; '>Last financial day's closing price for <b>{comp_name}</b> was ${real_data[-1]}</p>", unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; ">Enter the first closing price for <b>{comp_name}</b> to start the prediction journey!</p>', unsafe_allow_html=True)
-fict1=st.slider("",min_value=0.0,max_value=max_fict,value=mid_fict,step=0.05,key='slider 1')
+fict1=st.slider("",min_value=0.0,max_value=550.0,value=160.0,step=0.05,key='slider 1')
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; ">Now, input the second closing price to build the trend!</p>', unsafe_allow_html=True)
-fict2=st.slider("",min_value=0.0,max_value=max_fict,value=mid_fict,step=0.05,key='slider 2')
+fict2=st.slider("",min_value=0.0,max_value=550.0,value=160.0,step=0.05,key='slider 2')
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
 st.markdown(f'<p style="font-size:20px; text-align:left; ">Lastly, add the third closing price and let the model forecast your next move!</p>', unsafe_allow_html=True)
-fict3=st.slider("",min_value=0.0,max_value=max_fict,value=mid_fict,step=0.05,key='slider 3')
+fict3=st.slider("",min_value=0.0,max_value=550.0,value=160.0,step=0.05,key='slider 3')
 
 start_date='2018-03-06'
 end_date=datetime.datetime.today().strftime('%Y-%m-%d')
@@ -119,20 +117,20 @@ def price_predict():
     st.markdown(f"<p style='font-size:25px; text-align:left; '><b>What this means for you:</b></p>", unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; '>📊 Compared to your last input (${fict3}):</p>", unsafe_allow_html=True)
     if prediction>last_close2*1.0501:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>BUY</b>, since today's closing price is predicted to be more than 10% higher than yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>The predicted price suggests a <b>BUY</b> move based on the trend you created.</p>", unsafe_allow_html=True)
     elif last_close2*0.9501<=prediction<=last_close2*1.0501:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>HOLD</b>, since today's closing price is predicted to be around the same value as yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>The predicted price suggests a <b>HOLD</b> move based on the trend you created.</p>", unsafe_allow_html=True)
     else:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>SELL</b>, since today's closing price is predicted to be more than 5% lower yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>The predicted price suggests a <b>SELL</b> move based on the trend you created.</p>", unsafe_allow_html=True)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; '>💡Compared to today's actual closing price (${last_close1}):</p>", unsafe_allow_html=True)
     if prediction>last_close1*1.0501:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>BUY</b>, since today's closing price is predicted to be more than 10% higher than yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>If your predicted market conditions will appear, this signals a <b>BUY</b> recommendation based on today's price.", unsafe_allow_html=True)
     elif last_close1*0.9501<=prediction<=last_close1*1.0501:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>HOLD</b>, since today's closing price is predicted to be around the same value as yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>If your predicted market conditions will appear, this signals a <b>HOLD</b> recommendation based on today's price.</p>", unsafe_allow_html=True)
     else:
-        st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>SELL</b>, since today's closing price is predicted to be more than 5% lower yesterday's</p>", unsafe_allow_html=True)
+        st.markdown(f"<p style='font-size:22px; text-align:left; '>If your predicted market conditions will appear, this signals a <b>SELL</b> recommendation based on today's price.</p>", unsafe_allow_html=True)
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; '>Use these insights to test your strategy, refine your decisions, and see how well your predictions align with market movements!</p>", unsafe_allow_html=True)
 
