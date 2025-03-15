@@ -93,18 +93,19 @@ def display(companies):
         st.warning("⚠️ No company data available.")
 
     latest_data = real_data[-1]
+    latest_data2=stock_df.iloc[-1]
 
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's Price:</p>", unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:26px; text-align:left; '>${latest_data}</p>", unsafe_allow_html=True)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{selected_comp_name}'s metrics in average:</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{selected_comp_name}'s historical metrics in average:</p>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("📈 Open", f"${latest_data['Open']:.2f}")
-    col2.metric("📉 Low", f"${latest_data['Low']:.2f}")
-    col3.metric("📊 High", f"${latest_data['High']:.2f}")
-    col4.metric("🔄 Volume", f"{latest_data['Volume']:,}")
+    col1.metric("📈 Open", f"${latest_data2['Open']:.2f}")
+    col2.metric("📉 Low", f"${latest_data2['Low']:.2f}")
+    col3.metric("📊 High", f"${latest_data2['High']:.2f}")
+    col4.metric("🔄 Volume", f"{latest_data2['Volume']:,}")
 
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>📊 Candlestick Chart</p>", unsafe_allow_html=True)
