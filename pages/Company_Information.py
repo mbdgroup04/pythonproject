@@ -96,7 +96,7 @@ def display(companies):
 
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>Today's Price:</p>", unsafe_allow_html=True)
-    st.markdown(f"<p style='font-size:26px; text-align:left; '>${latest_data['Close']:.2f}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p style='font-size:26px; text-align:left; '>${latest_data}</p>", unsafe_allow_html=True)
     
     st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
     st.markdown(f"<p style='font-size:25px; text-align:left; font-weight:bold; '>{selected_comp_name}'s metrics in average:</p>", unsafe_allow_html=True)
