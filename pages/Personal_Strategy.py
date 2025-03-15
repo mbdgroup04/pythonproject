@@ -119,8 +119,9 @@ def price_predict():
         st.markdown(f"<p style='font-size:22px; text-align:left; '>In this fictional case, TradeVision AI would advice you to <b>SELL</b>, since today's closing price is predicted to be more than 5% lower yesterday's</p>", unsafe_allow_html=True)
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+
 placeholder=st.empty()
 time.sleep(3)
-with placeholder:
-    if st.button("PREDICT"):
-        price_predict()
+predict_clicked = placeholder.button("PREDICT")
+if predict_clicked:
+    price_predict()
