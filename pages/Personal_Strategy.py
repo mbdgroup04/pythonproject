@@ -135,6 +135,7 @@ def price_predict():
     st.markdown(f"<p style='font-size:25px; text-align:left; '>Use these insights to test your strategy, refine your decisions, and see how well your predictions align with market movements!</p>", unsafe_allow_html=True)
 
 st.markdown(f'<p style="font-size:20px; text-align:left; font-weight:bold; "><br></p>', unsafe_allow_html=True)
+st.markdown(f'<p style="font-size:12px; text-align:left; ">(Please bear in mind, if an error pops up after clicking on predict, please wait a few seconds for the page to reload and click again. Sorry for the inconvenience.)</p>', unsafe_allow_html=True)
 
 placeholder=st.empty()
 time.sleep(3)
