@@ -32,7 +32,7 @@ Ensure you have the following installed:
 2. **Create and activate a virtual environment (optional but recommended):**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
+   source venv/bin/activate
    ```
 3. **Install dependencies:**
    ```bash
